@@ -7,12 +7,18 @@
 	<script type="text/javascript" src="script.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <header>
-        <nav>
+        <nav class="nav-main">
             <a class="logo" href="index.html">Codex</a>
                 <div class="mobile-menu">
                     <div class="line1"></div>
                     <div class="line2"></div>
                     <div class="line3"></div>
+                    <ul class="nav-list">
+                        <li><a href="login.html">LOGIN</a></li>
+                        <li><a href="series.html">SÉRIES</a></li>
+                        <li><a href="streaming.html">SERVIÇOS DE STREAMING</a></li>
+                        <li><input type="text" value="" name="" id="buscar" class="buscarstyle"></li>
+                    </ul>
                 </div>
                     <ul class="nav-list">
                         <li><input type="checkbox" id="show">
@@ -70,6 +76,26 @@
 
     <h2><a>CATÁLOGO DE SÉRIES</a></h2>
 
+    <div class="content-nav">
+
+       <nav class="dp-menu-left"> <a class="a-nav-menu"> EDITAR CATÁLOGO</a>
+        <ul>
+            <li><a>ADICIONAR SÉRIE</a></li>
+            <li><a>EDITAR SÉRIE</a></li>
+            <li><a>APAGAR SÉRIE</a></li>
+        </ul>
+    </nav>
+
+        <nav class="dp-menu-right"> <a class="a-nav-menu"> FILTRAR</a>
+        <ul>
+            <li><a>ASSISTIDAS</a></li>
+            <li><a>FAVORITAS</a></li>
+            <li><a>QUERO ASSISTIR</a></li>
+        </ul>
+    </nav>
+
+    </div>
+
     <div class= "imgwrapper">
 
     <ul class="catalog-list">
@@ -116,6 +142,10 @@
 
     </div>
 
+<div class="footerdiv">
+    <footer>
+    </footer>      
+    </div>
 
 </body>
 </html>
