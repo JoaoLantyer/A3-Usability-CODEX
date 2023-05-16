@@ -25,7 +25,7 @@
                             <a><label for="show" class="show-btn">LOGIN</label></a>
                             <div class="container">
                                 <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
-                                <div class="login">Login</div>
+                                <div class="login">LOGIN</div>
                                 <form action="#">
                                   <div class="data">
                                     <label>Email:</label>
@@ -46,7 +46,7 @@
                             <a><label for="cadastrar" class="show-btn">CADASTRAR</label></a>
                             <div class="container">
                                 <label for="cadastrar" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
-                                <div class="login">Cadastrar</div>
+                                <div class="login">CADASTRAR</div>
                                 <form action="#">
                                     <div class="data">
                                         <label>Nome de usuário: </label>
@@ -60,6 +60,10 @@
                                         <label>Senha:</label>
                                         <input type="password" required>
                                     </div>
+                                    <div class="data">
+                                        <label>Confirmar Senha:</label>
+                                        <input type="password" required>
+                                      </div>
                                     <div class="btn">
                                     <div class="inner"></div>
                                         <button type="submit">CADASTRAR</button>
@@ -81,15 +85,81 @@
 
        <nav class="dp-menu-left"> <a class="a-nav-menu"> EDITAR CATÁLOGO</a>
         <ul>
-            <li><a>ADICIONAR PLATAFORMA</a></li>
-            <li><a>EDITAR PLATAFORMA</a></li>
-            <li><a>APAGAR PLATAFORMA</a></li>
+            <li><input type="checkbox" id="add-plataforma">
+                <a><label for="add-plataforma" class="show-btn">ADICIONAR UMA PLATAFORMA</label></a>
+                <div class="container">
+                    <div class="login-cadastro">
+                    <label for="add-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                    <div class="login">ADICIONAR UMA PLATAFORMA:</div>
+                    <form action="#">
+                      <div class="data">
+                        <label>Nome da plataforma:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="data">
+                        <label>URL do ícone:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">CONFIRMAR</button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+            </li>
+            <li><input type="checkbox" id="edit-plataforma">
+                <a><label for="edit-plataforma" class="show-btn">EDITAR UMA PLATAFORMA</label></a>
+                <div class="container">
+                    <div class="login-cadastro">
+                    <label for="edit-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                    <div class="login">EDITAR UMA PLATAFORMA:</div>
+                    <form action="#">
+                      <div class="data">
+                        <label>Nome da plataforma que quer editar:</label>
+                        <input type="text" required>
+                      </div>
+                      <div class="data">
+                        <label>Novo nome:</label>
+                        <input type="text" required>
+                      </div> 
+                      <div class="data">
+                        <label>Novo URL do ícone:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">CONFIRMAR</button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+                </li>
+                <li><input type="checkbox" id="del-plataforma">
+                    <a><label for="del-plataforma" class="show-btn">APAGAR UMA PLATAFORMA</label></a>
+                    <div class="container">
+                        <div class="login-cadastro">
+                        <label for="del-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                        <div class="login">APAGAR UMA PLATAFORMA:</div>
+                        <form action="#">
+                          <div class="data">
+                            <label>Nome da plataforma que deseja apagar:</label>
+                            <input type="text" required>
+                          </div>
+                          <div class="btn">
+                            <div class="inner"></div>
+                            <button type="submit">CONFIRMAR</button>
+                          </div>
+                        </form>
+                        </div>
+                    </div>
+                </li>
         </ul>
     </nav>
 
         <nav class="dp-menu-right"> <a class="a-nav-menu"> FILTRAR</a>
         <ul>
-            <li><a>ASSINADAS</a></li>
+            <li><a>FAVORITAS</a></li>
         </ul>
     </nav>
 
@@ -99,30 +169,31 @@
 
     <ul class="catalog-list">
         <div class="catalog_div">
-        <li><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix" width="250" height="250"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
         <div class="catalog_div">
-        <li><img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?resize=512%2C512&ssl=1" alt="Prime Video" width="250" height="250"></li>
+        <li><img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?resize=512%2C512&ssl=1" alt="Prime Video" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
     </ul>
 
     <ul class="catalog-list">
         <div class="catalog_div">
-        <li><img src="https://pbs.twimg.com/profile_images/1568215827396034563/omtKNCqi_400x400.jpg" alt="Disney Plus" width="250" height="250"></li>
+        <li><img src="https://pbs.twimg.com/profile_images/1568215827396034563/omtKNCqi_400x400.jpg" alt="Disney Plus" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
         <div class="catalog_div">
-        <li><img src="https://static.wikia.nocookie.net/hbo-max/images/2/28/Mainpage_Logo.png" alt="HBO Max" width="250" height="250"></li>
+        <li><img src="https://static.wikia.nocookie.net/hbo-max/images/2/28/Mainpage_Logo.png" alt="HBO Max" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
     </ul>
 
+    <a class="page-selector">1/1</a>
+
     </div>
-
-<div class="footerdiv">
-    <footer>
-    </footer>      
-    </div>
-
-
 
 </body>
+<footer>
+</footer>
 </html>

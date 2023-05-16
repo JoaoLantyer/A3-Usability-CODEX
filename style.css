@@ -57,7 +57,7 @@ a:hover{
 
 
 
-header, footer{
+header{
    background:  #444444;
    height:8vh;
 }
@@ -65,11 +65,12 @@ header, footer{
 .content-nav{
     display: flex;
     justify-content: space-between;
-    width: 1175px;
+    width: 60vw;
     margin: auto;
 }
 
 .imgwrapper{
+    height: 80vh;
     text-align: center;
 }
 
@@ -96,7 +97,7 @@ header, footer{
     border-color: #DA0037;
 }
 
-.imagens_div img:hover ~ p{
+.imagens_div img:hover ~ p, .catalog_div:hover .status-bar, .catalog_div:hover .stream-status-bar{
     opacity: 1;
 }
 
@@ -109,8 +110,38 @@ header, footer{
     opacity: 0;
   }
 
-  .floatright{
+  .status-bar{
+    height: 60px;
+    width: 170px;
+    display: inline-flex;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    background-image: url(olho.png), url(thumb-up.png), url(thumb-down.png), url(bookmark.png);
+    background-size: 20px 20px;
+    background-position: 0px center, 50px center, 100px center, 150px center;
+    background-repeat: no-repeat;
+  }
+
+  .stream-status-bar{
+    height: 60px;
+    width: 252px;
+    display: inline-flex;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    background-image: url(coracao.png);
+    background-size: 20px 20px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .like-percentage{
     float:right;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-image: url(thumb-up.png);
+    background-size: 20px 20px;
+    background-position: 70px center;
+    background-repeat: no-repeat;
   }
 
   .a-nav-menu{
@@ -124,7 +155,7 @@ header, footer{
     padding-top: 10px;
     padding-bottom: 10px;
     background-image: url(editar.png), url(seta-baixo.png);
-    background-size: 20px 20px, 20px 20px;
+    background-size: 20px 20px;
     background-position: 150px center, 180px center;
     background-repeat: no-repeat;
 }
@@ -235,15 +266,13 @@ input[type="checkbox"] {
     border-radius: 20px;
 }
 
-#show:checked ~ .container {
+#show:checked ~ .container, #cadastrar:checked ~ .container,
+ #add-serie:checked ~ .container, #edit-serie:checked ~ .container, #del-serie:checked ~ .container, 
+ #add-plataforma:checked ~ .container, #edit-plataforma:checked ~ .container, #del-plataforma:checked ~ .container {
     display: block;
     z-index: 50;
 }
 
-#cadastrar:checked ~ .container {
-    display: block;
-    z-index: 50;
-}
 
 .container .close-btn {
     position: absolute;
@@ -296,15 +325,17 @@ form .esqueceusenha a:hover {
     text-decoration: underline;
 }
 
-
-
-form .cadastrar a{
+form .cadastrar a, 
+form .add-serie a, form .edit-serie a, form .del-serie a, 
+form .add-plataforma, form .edit-plataforma, form .del-plataforma{
     color: #DA0037;
     text-decoration: none;
     padding-left: 5px;
 }
 
-form .cadastrar a:hover {
+form .cadastrar a:hover, 
+form .add-serie a:hover, form .edit-serie a:hover, .del-serie a:hover, 
+form .add-plataforma a:hover, form .edit-plataforma a:hover, form .del-plataforma a:hover{
     text-decoration: underline; 
 }
 
@@ -398,6 +429,15 @@ form .signup-link a:hover {
         background-repeat: no-repeat;
         order:3;
     }
+
+    .buscarstyle{
+        font-size:3vh;
+        height: 5vh;
+        width: 50vw;
+        background-size: 28px 28px;
+        background-position: 43vw center;
+        background-repeat: no-repeat;
+    }
     
     .mobile-menu.open .nav-list{
         display: flex;
@@ -412,9 +452,13 @@ form .signup-link a:hover {
 .login-cadastro{
     letter-spacing: 3px;
     font-weight: bold;
+    font-size: 15px;
 }
 
 .catalog-list{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60vw;
     list-style: none;
 }
 
@@ -422,17 +466,22 @@ form .signup-link a:hover {
     text-align: left;
     vertical-align: top;
     display: inline-block;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-  .footerdiv{
-    display: flex;
-    flex-direction: column;
-    min-height: 12vh;
-  }
+.page-selector{
+    padding:30px;
+    background-image: url(seta-esquerda.png), url(seta-direita.png);
+    background-size: 20px 20px, 20px 20px;
+    background-position: 0px center, 65px center;
+    background-repeat: no-repeat;
+}
 
   footer{
-    margin-top:3%;
+    background:  #444444;
+    position:fixed;
+    bottom: 0;
+    height: 4vh;
+    width: 100%;
  }
