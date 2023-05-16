@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+	<title>A3</title>
+    <link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="script.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <header>
+        <nav class="nav-main">
+            <a class="logo" href="index.html">Codex</a>
+            <a class="mobile-search" href="buscar.html"></a>
+                <div class="mobile-menu">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                    <ul class="nav-list">
+                        <li><a href="login.html">LOGIN</a></li>
+                        <li><a href="series.html">SÉRIES</a></li>
+                        <li><a href="streaming.html">STREAMING</a></li>
+                    </ul>
+                </div>
+                    <ul class="nav-list">
+                        <li><input type="checkbox" id="show">
+                            <a><label for="show" class="show-btn">LOGIN</label></a>
+                            <div class="container">
+                                <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                                <div class="login">LOGIN</div>
+                                <form action="#">
+                                  <div class="data">
+                                    <label>Email:</label>
+                                    <input type="text" required>
+                                  </div>  
+                                  <div class="data">
+                                    <label>Senha:</label>
+                                    <input type="password" required>
+                                  </div>  
+                                  <div class="esqueceusenha"><a href="#">Esqueceu sua senha?</a></div>
+                                  <div class="btn">
+                                    <div class="inner"></div>
+                                    <button type="submit">Login</button>
+                                  </div>
+                                </form></li>
+                                <li>
+                                    <input type="checkbox" id="cadastrar">
+                            <a><label for="cadastrar" class="show-btn">CADASTRAR</label></a>
+                            <div class="container">
+                                <label for="cadastrar" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                                <div class="login">CADASTRAR</div>
+                                <form action="#">
+                                    <div class="data">
+                                        <label>Nome de usuário: </label>
+                                        <input type="text" required>
+                                    </div> 
+                                    <div class="data">
+                                        <label>Email:</label>
+                                        <input type="text" required>
+                                    </div>  
+                                    <div class="data">
+                                        <label>Senha:</label>
+                                        <input type="password" required>
+                                    </div>
+                                    <div class="data">
+                                        <label>Confirmar Senha:</label>
+                                        <input type="password" required>
+                                      </div>
+                                    <div class="btn">
+                                    <div class="inner"></div>
+                                        <button type="submit">CADASTRAR</button>
+                                  </div>
+                                </form>
+
+                                </li>
+                                <li><a href="series.html">SÉRIES</a></li>
+                        <li><a href="streaming.html">SERVIÇOS DE STREAMING</a></li>
+                        <li><input type="text" value="" name="" id="buscar" class="buscarstyle"></li> 
+                    </ul>
+        </nav>
+    </header>
+
+    
+    <h2><a>PLATAFORMAS DE STREAMING</a></h2>
+
+    <div class="content-nav">
+
+       <nav class="dp-menu-left"> <a class="a-nav-menu"> EDITAR CATÁLOGO</a>
+        <ul>
+            <li><input type="checkbox" id="add-plataforma">
+                <a><label for="add-plataforma" class="show-btn">ADICIONAR UMA PLATAFORMA</label></a>
+                <div class="container">
+                    <div class="login-cadastro">
+                    <label for="add-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                    <div class="login">ADICIONAR UMA PLATAFORMA:</div>
+                    <form action="#">
+                      <div class="data">
+                        <label>Nome da plataforma:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="data">
+                        <label>URL do ícone:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">CONFIRMAR</button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+            </li>
+            <li><input type="checkbox" id="edit-plataforma">
+                <a><label for="edit-plataforma" class="show-btn">EDITAR UMA PLATAFORMA</label></a>
+                <div class="container">
+                    <div class="login-cadastro">
+                    <label for="edit-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                    <div class="login">EDITAR UMA PLATAFORMA:</div>
+                    <form action="#">
+                      <div class="data">
+                        <label>Nome da plataforma que quer editar:</label>
+                        <input type="text" required>
+                      </div>
+                      <div class="data">
+                        <label>Novo nome:</label>
+                        <input type="text" required>
+                      </div> 
+                      <div class="data">
+                        <label>Novo URL do ícone:</label>
+                        <input type="text" required>
+                      </div>  
+                      <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">CONFIRMAR</button>
+                      </div>
+                    </form>
+                    </div>
+                </div>
+                </li>
+                <li><input type="checkbox" id="del-plataforma">
+                    <a><label for="del-plataforma" class="show-btn">APAGAR UMA PLATAFORMA</label></a>
+                    <div class="container">
+                        <div class="login-cadastro">
+                        <label for="del-plataforma" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                        <div class="login">APAGAR UMA PLATAFORMA:</div>
+                        <form action="#">
+                          <div class="data">
+                            <label>Nome da plataforma que deseja apagar:</label>
+                            <input type="text" required>
+                          </div>
+                          <div class="btn">
+                            <div class="inner"></div>
+                            <button type="submit">CONFIRMAR</button>
+                          </div>
+                        </form>
+                        </div>
+                    </div>
+                </li>
+        </ul>
+    </nav>
+
+        <nav class="dp-menu-right"> <a class="a-nav-menu"> FILTRAR</a>
+        <ul>
+            <li><a>FAVORITAS</a></li>
+        </ul>
+    </nav>
+
+    </div>
+
+    <div class= "imgwrapper">
+
+    <ul class="catalog-list">
+        <div class="catalog_div">
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
+        </div>
+        <div class="catalog_div">
+        <li><img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?resize=512%2C512&ssl=1" alt="Prime Video" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
+        </div>
+    </ul>
+
+    <ul class="catalog-list">
+        <div class="catalog_div">
+        <li><img src="https://pbs.twimg.com/profile_images/1568215827396034563/omtKNCqi_400x400.jpg" alt="Disney Plus" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
+        </div>
+        <div class="catalog_div">
+        <li><img src="https://static.wikia.nocookie.net/hbo-max/images/2/28/Mainpage_Logo.png" alt="HBO Max" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
+        </div>
+    </ul>
+
+    <a class="page-selector">1/1</a>
+
+    </div>
+
+</body>
+<footer>
+</footer>
+</html>
