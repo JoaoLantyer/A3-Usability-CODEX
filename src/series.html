@@ -21,7 +21,7 @@
                     </ul>
                 </div>
                     <ul class="nav-list">
-                        <li><input type="checkbox" id="show">
+                        <li><input type="checkbox" class="hide-checkbox" id="show">
                             <a><label for="show" class="show-btn">LOGIN</label></a>
                             <div class="container">
                                 <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
@@ -43,7 +43,7 @@
                                 </form>
                                 </li>
                                 <li>
-                                    <input type="checkbox" id="cadastrar">
+                                    <input type="checkbox" class="hide-checkbox" id="cadastrar">
                             <a><label for="cadastrar" class="show-btn">CADASTRAR</label></a>
                             <div class="container">
                                 <label for="cadastrar" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
@@ -85,7 +85,7 @@
 
        <nav class="dp-menu-left"> <a class="a-nav-menu"> EDITAR CATÁLOGO</a>
         <ul>
-           <li><input type="checkbox" id="add-serie">
+           <li><input type="checkbox" class="hide-checkbox" id="add-serie">
                 <a><label for="add-serie" class="show-btn">ADICIONAR UMA SÉRIE</label></a>
                 <div class="container">
                     <div class="login-cadastro">
@@ -99,7 +99,16 @@
                       <div class="data">
                         <label>URL do pôster:</label>
                         <input type="text" required>
-                      </div>  
+                      </div>
+                        <label>Em qual plataforma de streaming ela está disponível:</label>
+                        <div class="data">
+                        <div class="multiple-choice">
+                        <input type="checkbox" value="Netflix"> Netflix
+                        <input type="checkbox" value="Amazon Prime"> Amazon Prime
+                        <input type="checkbox" value="Disney Plus"> Disney Plus
+                        <input type="checkbox" value="HBO MAX"> HBO MAX
+                        </div>
+                      </div> 
                       <div class="btn">
                         <div class="inner"></div>
                         <button type="submit">CONFIRMAR</button>
@@ -108,7 +117,7 @@
                     </div>
                 </div>
             </li>
-                <li><input type="checkbox" id="edit-serie">
+                <li><input type="checkbox" class="hide-checkbox" id="edit-serie">
                     <a><label for="edit-serie" class="show-btn">EDITAR UMA SÉRIE</label></a>
                     <div class="container">
                         <div class="login-cadastro">
@@ -127,6 +136,15 @@
                             <label>Novo URL do pôster:</label>
                             <input type="text" required>
                           </div>
+                          <label>Em qual plataforma de streaming ela está disponível:</label>
+                          <div class="data">
+                          <div class="multiple-choice">
+                          <input type="checkbox" value="Netflix"> Netflix
+                          <input type="checkbox" value="Amazon Prime"> Amazon Prime
+                          <input type="checkbox" value="Disney Plus"> Disney Plus
+                          <input type="checkbox" value="HBO MAX"> HBO MAX
+                          </div>
+                        </div> 
                           <div class="btn">
                             <div class="inner"></div>
                             <button type="submit">CONFIRMAR</button>
@@ -134,7 +152,7 @@
                         </form>
                         </div>
                     </li>
-                    <li><input type="checkbox" id="del-serie">
+                    <li><input type="checkbox" class="hide-checkbox" id="del-serie">
                         <a><label for="del-serie" class="show-btn">APAGAR UMA SÉRIE</label></a>
                         <div class="container">
                             <div class="login-cadastro">

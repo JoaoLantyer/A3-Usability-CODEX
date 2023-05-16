@@ -248,10 +248,13 @@ header{
     margin: 8px;
 }
 
-
-
-input[type="checkbox"] {
+.hide-checkbox {
     display: none;
+}
+
+.multiple-choice{
+    font-size: smaller;
+    display: inline-flex;
 }
 
 .container {
