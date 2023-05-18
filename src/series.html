@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset = "utf-8">
-	<title>A3</title>
+    <title>CODEX</title>
+    <link rel="icon" type="image/x-icon" href="clapper.png">
     <link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -26,7 +27,7 @@
                             <div class="container">
                                 <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
                                 <div class="login">LOGIN</div>
-                                <form action="#">
+                                <form action="series-admin.html">
                                   <div class="data">
                                     <label>Email:</label>
                                     <input type="text" required>
@@ -35,7 +36,7 @@
                                     <label>Senha:</label>
                                     <input type="password" required>
                                   </div>  
-                                  <div class="esqueceusenha"><a href="#">Esqueceu sua senha?</a></div>
+                                  <div class="esqueceusenha"><a href="esqueceusenha.html">Esqueceu sua senha?</a></div>
                                   <div class="btn">
                                     <div class="inner"></div>
                                     <button type="submit">Login</button>
@@ -74,111 +75,15 @@
                                 </li>
                                 <li><a href="series.html">SÉRIES</a></li>
                         <li><a href="streaming.html">SERVIÇOS DE STREAMING</a></li>
-                        <li><input type="text" value="" name="" id="buscar" class="buscarstyle"></li> 
+                        <li><input type="text" value="" name="" id="buscar" class="buscar-style"></li> 
                     </ul>
         </nav>
     </header>
 
-    <h2><a>CATÁLOGO DE SÉRIES</a></h2>
-
     <div class="content-nav">
-
-       <nav class="dp-menu-left"> <a class="a-nav-menu"> EDITAR CATÁLOGO</a>
-        <ul>
-           <li><input type="checkbox" class="hide-checkbox" id="add-serie">
-                <a><label for="add-serie" class="show-btn">ADICIONAR UMA SÉRIE</label></a>
-                <div class="container">
-                    <div class="login-cadastro">
-                    <label for="add-serie" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
-                    <div class="login">ADICIONAR UMA SÉRIE:</div>
-                    <form action="#">
-                      <div class="data">
-                        <label>Nome da série:</label>
-                        <input type="text" required>
-                      </div>  
-                      <div class="data">
-                        <label>URL do pôster:</label>
-                        <input type="text" required>
-                      </div>
-                        <label>Em qual plataforma de streaming ela está disponível:</label>
-                        <div class="data">
-                        <div class="multiple-choice">
-                        <input type="checkbox" value="Netflix"> Netflix
-                        <input type="checkbox" value="Amazon Prime"> Amazon Prime
-                        <input type="checkbox" value="Disney Plus"> Disney Plus
-                        <input type="checkbox" value="HBO MAX"> HBO MAX
-                        </div>
-                      </div> 
-                      <div class="btn">
-                        <div class="inner"></div>
-                        <button type="submit">CONFIRMAR</button>
-                      </div>
-                    </form>
-                    </div>
-                </div>
-            </li>
-                <li><input type="checkbox" class="hide-checkbox" id="edit-serie">
-                    <a><label for="edit-serie" class="show-btn">EDITAR UMA SÉRIE</label></a>
-                    <div class="container">
-                        <div class="login-cadastro">
-                        <label for="edit-serie" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
-                        <div class="login">EDITAR UMA SÉRIE:</div>
-                        <form action="#">
-                          <div class="data">
-                            <label>Nome da série que quer editar:</label>
-                            <input type="text" required>
-                          </div>  
-                          <div class="data">
-                            <label>Novo nome:</label>
-                            <input type="text" required>
-                          </div> 
-                          <div class="data">
-                            <label>Novo URL do pôster:</label>
-                            <input type="text" required>
-                          </div>
-                          <label>Em qual plataforma de streaming ela está disponível:</label>
-                          <div class="data">
-                          <div class="multiple-choice">
-                          <input type="checkbox" value="Netflix"> Netflix
-                          <input type="checkbox" value="Amazon Prime"> Amazon Prime
-                          <input type="checkbox" value="Disney Plus"> Disney Plus
-                          <input type="checkbox" value="HBO MAX"> HBO MAX
-                          </div>
-                        </div> 
-                          <div class="btn">
-                            <div class="inner"></div>
-                            <button type="submit">CONFIRMAR</button>
-                          </div>
-                        </form>
-                        </div>
-                    </li>
-                    <li><input type="checkbox" class="hide-checkbox" id="del-serie">
-                        <a><label for="del-serie" class="show-btn">APAGAR UMA SÉRIE</label></a>
-                        <div class="container">
-                            <div class="login-cadastro">
-                            <label for="del-serie" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
-                            <div class="login">APAGAR UMA SÉRIE:</div>
-                            <form action="#">
-                              <div class="data">
-                                <label>Nome da série que deseja apagar:</label>
-                                <input type="text" required>
-                              </div> 
-                              <div class="btn">
-                                <div class="inner"></div>
-                                <button type="submit">CONFIRMAR</button>
-                              </div>
-                            </form>
-                            </div>
-                        </div>
-                    </li>
-        </ul>
-    </nav>
-
+      <h3><a>CATÁLOGO DE SÉRIES</a></h3>
         <nav class="dp-menu-right"> <a class="a-nav-menu"> FILTRAR</a>
         <ul>
-            <li><a>ASSISTIDAS</a></li>
-            <li><a>FAVORITAS</a></li>
-            <li><a>QUERO ASSISTIR</a></li>
             <li class="available-on">DISPONÍVEIS NA:</li>
             <li><a>NETFLIX</a></li>
             <li><a>AMAZON PRIME</a></li>

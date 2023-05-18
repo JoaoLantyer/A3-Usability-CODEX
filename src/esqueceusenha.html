@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset = "utf-8">
-	<title>A3</title>
+	<title>CODEX</title>
+    <link rel="icon" type="image/x-icon" href="clapper.png">
     <link rel="stylesheet" href="style.css">
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <script src="script.js"></script>
@@ -29,7 +30,7 @@
                             <div class="container">
                                 <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
                                 <div class="login">LOGIN</div>
-                                <form action="#">
+                                <form action="admin.html">
                                   <div class="data">
                                     <label>Email:</label>
                                     <input type="text" required>
@@ -38,7 +39,7 @@
                                     <label>Senha:</label>
                                     <input type="password" required>
                                   </div>  
-                                  <div class="esqueceusenha"><a href="#">Esqueceu sua senha?</a></div>
+                                  <div class="esqueceusenha"><a href="esqueceusenha.html">Esqueceu sua senha?</a></div>
                                   <div class="btn">
                                     <div class="inner"></div>
                                     <button type="submit">Login</button>
@@ -64,9 +65,9 @@
                                         <input type="password" required>
                                     </div>
                                     <div class="data">
-                                      <label>Confirmar Senha:</label>
-                                      <input type="password" required>
-                                    </div>
+                                        <label>Confirmar Senha:</label>
+                                        <input type="password" required>
+                                      </div>
                                     <div class="btn">
                                     <div class="inner"></div>
                                         <button type="submit">CADASTRAR</button>
@@ -76,39 +77,28 @@
                                 </li>
                                 <li><a href="series.html">SÉRIES</a></li>
                         <li><a href="streaming.html">SERVIÇOS DE STREAMING</a></li>
-                        <li><input type="text" value="" name="" id="buscar" class="buscar-style"></li>
+                        <li><input type="text" value="" name="" id="buscar" class="buscar-style"></li> 
                     </ul>
         </nav>
     </header>
 
     <div class="login-cadastro">
-    <div class="container-mobile">
-        <div class="login">CADASTRAR</div>
-        <form action="#">
-          <div class="data">
-            <label>Email:</label>
-            <input type="text" required>
-          </div> 
-          <div class="data">
-            <label>Usuário:</label>
-            <input type="text" required>
-          </div>  
-          <div class="data">
-            <label>Senha:</label>
-            <input type="password" required>
+        <div class="container-mobile">
+            <div class="login">EMAIL PARA RECUPERAÇÃO DE SENHA</div>
+            <form action="#">
+              <div class="data">
+                <label>Email:</label>
+                <input type="text" required>
+              </div>  
+              <div class="btn">
+                <div class="inner"></div>
+                <button type="submit">ENVIAR</button>
+              </div>
+              <div class="cadastrar">Ainda não é membro?<a href="cadastro.html">Cadastre-se.</a></div>
+            </form>
           </div>
-          <div class="data">
-            <label>Confirmar Senha:</label>
-            <input type="password" required>
-          </div>
-          <div class="btn">
-            <div class="inner"></div>
-            <button type="submit">Cadastrar</button>
-          </div>
-        </form>
-    </div>
 
-</body>
 <footer>
-</footer>
+</footer> 
+
 </html>

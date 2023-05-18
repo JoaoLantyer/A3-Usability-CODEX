@@ -62,11 +62,27 @@ header{
    height:8vh;
 }
 
+h2{
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+  }
+
 .content-nav{
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    width: 60vw;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #444444;
+    width: 58vw;
+    margin-top: 8vh;
+    margin-bottom: 15px;
+}
+
+.submenu-nav{
+    display: inline-flex;
+    align-items: center;
 }
 
 .imgwrapper{
@@ -74,7 +90,7 @@ header{
     text-align: center;
 }
 
-.imagens_div{
+.serie-div{
     text-align: left;
     vertical-align: top;
     display: inline-block;
@@ -83,7 +99,7 @@ header{
     margin-bottom: 3%;
 }
 
-.imagens_div img, .catalog_div img {
+.serie-div img, .catalog_div img {
      display: block;
      border: 1px;
      border-radius: 10px;
@@ -92,25 +108,25 @@ header{
      transition: transform 0.3s ease;
 }
  
-.imagens_div img:hover,.catalog_div img:hover {
+.serie-div img:hover,.catalog_div img:hover {
     transform: scale(1.1);
     border-color: #DA0037;
 }
 
-.imagens_div img:hover ~ p, .catalog_div:hover .status-bar, .catalog_div:hover .stream-status-bar{
+.serie-div img:hover ~ p, .catalog_div:hover .status-bar, .catalog_div:hover .stream-status-bar{
     opacity: 1;
 }
 
-  .imagens_div p{
+.serie-div p{
     line-height: 90px;
     color: #EDEDED;
     display: inline-flex;
     font-weight: bold;
     transition: opacity 0.3s ease;
     opacity: 0;
-  }
+}
 
-  .status-bar{
+.status-bar{
     height: 60px;
     width: 170px;
     display: inline-flex;
@@ -120,9 +136,9 @@ header{
     background-size: 20px 20px;
     background-position: 0px center, 50px center, 100px center, 150px center;
     background-repeat: no-repeat;
-  }
+}
 
-  .stream-status-bar{
+.stream-status-bar{
     height: 60px;
     width: 252px;
     display: inline-flex;
@@ -132,9 +148,9 @@ header{
     background-size: 20px 20px;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}
 
-  .like-percentage{
+.like-percentage{
     float:right;
     padding-left: 30px;
     padding-right: 30px;
@@ -142,13 +158,60 @@ header{
     background-size: 20px 20px;
     background-position: 70px center;
     background-repeat: no-repeat;
-  }
+}
 
-  .a-nav-menu{
+.a-nav-menu{
     padding-left:10px;
-  }
+}
 
-  .dp-menu-left {
+.admin{
+    line-height: 8vh;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:30px;
+    padding-right:30px;
+    background-image: url(user.png), url(seta-baixo.png);
+    background-size: 25px 25px, 10px 10px;
+    background-position: 0px, 110px center;
+    background-repeat: no-repeat;
+}
+
+.nav-options{
+    line-height:8vh;
+}
+
+.dp-menu-admin {
+    display: block;
+}
+
+.dp-menu-admin ul {
+    width: inherit;
+    display: none;
+    list-style: none;
+    position:absolute;
+    background-color: #444444;
+    z-index: 5;
+}
+
+.dp-menu-admin:hover ul{
+    display: block;
+    width: 200px;
+}
+
+.dp-menu-admin ul li {
+    margin-left:0px;
+    padding:10px;
+    line-height:16px;
+}
+
+.admin-options{
+    font-size:small;
+    letter-spacing: normal;
+    font-weight: normal;
+    line-height:12px;
+}
+
+.dp-menu-left {
     display: block;
     margin-right: auto;
     width: 210px;
@@ -162,7 +225,7 @@ header{
 
 .dp-menu-right {
     display: block;
-    margin-left: 30px;
+    margin-left: auto;
     width: 130px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -181,7 +244,7 @@ header{
     z-index: 5;
 }
 
-.dp-menu-left ul li, .dp-menu-right ul li{
+.dp-menu-left ul li, .dp-menu-right ul li {
     position: relative;
     font-size:small;
     padding-left: 10px;
@@ -197,6 +260,10 @@ header{
     display: block;
 }
 
+.dp-menu-admin ul li:hover, .dp-menu-left ul li:hover, .dp-menu-right ul li:hover{
+    background-color: #2E2E2E;
+}
+
 .available-on{
     position: relative;
     color: #EDEDED;
@@ -209,14 +276,7 @@ header{
     padding-bottom:5px;
 }
 
-
-  h2{
-    text-align: center;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-  }
-
-  .buscarstyle{
+  .buscar-style{
     opacity: 0.5;
     padding-left:10px;
     height: 30px;
@@ -228,7 +288,7 @@ header{
     background-repeat: no-repeat;
   }
 
-  .buscarstyle:hover{
+  .buscar-style:hover{
     opacity: 1;
   }
 
