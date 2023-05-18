@@ -176,6 +176,16 @@ h2{
     background-repeat: no-repeat;
 }
 
+.admin-mobile{
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:30px;
+    background-image: url(user.png);
+    background-size: 25px 25px;
+    background-position: 0px, center;
+    background-repeat: no-repeat;
+}
+
 .nav-options{
     line-height:8vh;
 }
@@ -479,11 +489,12 @@ form .signup-link a:hover {
         background: #444444;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
         z-index: 10;
     }
     .nav-list li {
         margin-left: 0;
+        padding-top: 50px;
+        padding-bottom:50px;
     }
 
     .mobile-menu {
@@ -506,21 +517,18 @@ form .signup-link a:hover {
         order:3;
     }
 
-    .buscarstyle{
+    .buscar-style{
         font-size:3vh;
         height: 5vh;
         width: 50vw;
         background-size: 28px 28px;
         background-position: 43vw center;
         background-repeat: no-repeat;
+        order: 3;
     }
     
     .mobile-menu.open .nav-list{
         display: flex;
-    }
-
-    .buscarstyle{
-        order: 3;
     }
 
 }
