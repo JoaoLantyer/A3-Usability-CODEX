@@ -29,7 +29,7 @@ a:hover{
     padding-top:5px;
     padding-bottom:5px;
     padding-left: 50px;
-    background-image: url(clapper.png);
+    background-image: url(images/clapper.png);
     background-size: 40px 40px;
     background-position: 0px center;
     background-repeat: no-repeat;
@@ -132,7 +132,7 @@ h2{
     display: inline-flex;
     transition: opacity 0.3s ease;
     opacity: 0;
-    background-image: url(olho.png), url(thumb-up.png), url(thumb-down.png), url(bookmark.png);
+    background-image: url(images/olho.png), url(images/thumb-up.png), url(images/thumb-down.png), url(images/bookmark.png);
     background-size: 20px 20px;
     background-position: 0px center, 50px center, 100px center, 150px center;
     background-repeat: no-repeat;
@@ -144,7 +144,7 @@ h2{
     display: inline-flex;
     transition: opacity 0.3s ease;
     opacity: 0;
-    background-image: url(coracao.png);
+    background-image: url(images/coracao.png);
     background-size: 20px 20px;
     background-position: center;
     background-repeat: no-repeat;
@@ -154,7 +154,7 @@ h2{
     float:right;
     padding-left: 30px;
     padding-right: 30px;
-    background-image: url(thumb-up.png);
+    background-image: url(images/thumb-up.png);
     background-size: 20px 20px;
     background-position: 70px center;
     background-repeat: no-repeat;
@@ -170,7 +170,7 @@ h2{
     padding-bottom:10px;
     padding-left:30px;
     padding-right:30px;
-    background-image: url(user.png), url(seta-baixo.png);
+    background-image: url(images/user.png), url(images/seta-baixo.png);
     background-size: 25px 25px, 10px 10px;
     background-position: 0px, 110px center;
     background-repeat: no-repeat;
@@ -180,7 +180,7 @@ h2{
     padding-top:10px;
     padding-bottom:10px;
     padding-left:30px;
-    background-image: url(user.png);
+    background-image: url(images/user.png);
     background-size: 25px 25px;
     background-position: 0px, center;
     background-repeat: no-repeat;
@@ -227,7 +227,7 @@ h2{
     width: 210px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-image: url(editar.png), url(seta-baixo.png);
+    background-image: url(images/editar.png), url(images/seta-baixo.png);
     background-size: 20px 20px;
     background-position: 150px center, 180px center;
     background-repeat: no-repeat;
@@ -239,7 +239,7 @@ h2{
     width: 130px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-image: url(filtro.png), url(seta-baixo.png);
+    background-image: url(images/filtro.png), url(images/seta-baixo.png);
     background-size: 20px 20px, 20px 20px;
     background-position: 70px center, 100px center;
     background-repeat: no-repeat;
@@ -292,7 +292,7 @@ h2{
     height: 30px;
     width: 150px;
     border-radius: 20px;
-    background-image: url(pesquisa.png);
+    background-image: url(images/pesquisa.png);
     background-size: 13px 13px;
     background-position: 135px center;
     background-repeat: no-repeat;
@@ -510,7 +510,7 @@ form .signup-link a:hover {
         width: 48px;
         height: 38px;
         display:flex;
-        background-image: url(pesquisa-mobile.png);
+        background-image: url(images/pesquisa-mobile.png);
         background-size: 28px 28px;
         background-position: center;
         background-repeat: no-repeat;
@@ -556,7 +556,7 @@ form .signup-link a:hover {
 
 .page-selector{
     padding:30px;
-    background-image: url(seta-esquerda.png), url(seta-direita.png);
+    background-image: url(images/seta-esquerda.png), url(images/seta-direita.png);
     background-size: 20px 20px, 20px 20px;
     background-position: 0px center, 65px center;
     background-repeat: no-repeat;

@@ -1,0 +1,30 @@
+{
+  "name": "projeto_a3_usabilidade",
+  "version": "1.0.0",
+  "description": "Projeto A3 CODEX",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoLantyer/A3-Usability-CODEX.git"
+  },
+  "keywords": [
+    "\"CODEX\"",
+    "\"A3\""
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoaoLantyer/A3-Usability-CODEX/issues"
+  },
+  "homepage": "https://github.com/JoaoLantyer/A3-Usability-CODEX#readme",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "sqlite3": "^5.1.6"
+  }
+}

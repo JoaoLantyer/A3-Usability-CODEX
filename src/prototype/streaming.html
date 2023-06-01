@@ -3,7 +3,7 @@
 <head>
     <meta charset = "utf-8">
     <title>CODEX</title>
-    <link rel="icon" type="image/x-icon" href="clapper.png">
+    <link rel="icon" type="image/x-icon" href="images/clapper.png">
     <link rel="stylesheet" href="style.css">
 	<script type="text/javascript" src="script.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -26,9 +26,9 @@
                         <li><input type="checkbox" class="hide-checkbox" id="show">
                             <a><label for="show" class="show-btn">LOGIN</label></a>
                             <div class="container">
-                                <label for="show" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                                <label for="show" class="close-btn"><img src="images/cancelar.png" alt="cancelar" class="close-btn"></label>
                                 <div class="login">LOGIN</div>
-                                <form action="series-admin.html">
+                                <form action="streaming-admin.html">
                                   <div class="data">
                                     <label>Email:</label>
                                     <input type="text" required>
@@ -42,13 +42,12 @@
                                     <div class="inner"></div>
                                     <button type="submit">Login</button>
                                   </div>
-                                </form>
-                                </li>
+                                </form></li>
                                 <li>
                                     <input type="checkbox" class="hide-checkbox" id="cadastrar">
                             <a><label for="cadastrar" class="show-btn">CADASTRAR</label></a>
                             <div class="container">
-                                <label for="cadastrar" class="close-btn"><img src="cancelar.png" alt="cancelar" class="close-btn"></label>
+                                <label for="cadastrar" class="close-btn"><img src="images/cancelar.png" alt="cancelar" class="close-btn"></label>
                                 <div class="login">CADASTRAR</div>
                                 <form action="#">
                                     <div class="data">
@@ -81,73 +80,34 @@
         </nav>
     </header>
 
-    <div class="content-nav">
-      <h3><a>CATÁLOGO DE SÉRIES</a></h3>
-        <nav class="dp-menu-right"> <a class="a-nav-menu"> FILTRAR</a>
-        <ul>
-            <li class="available-on">DISPONÍVEIS NA:</li>
-            <li><a>NETFLIX</a></li>
-            <li><a>AMAZON PRIME</a></li>
-            <li><a>DISNEY+</a></li>
-            <li><a>HBO MAX</a></li>
-        </ul>
-    </nav>
+    
 
+
+    <div class="content-nav">
+      <h3><a>PLATAFORMAS DE STREAMING</a></h3>
     </div>
 
     <div class= "imgwrapper">
 
     <ul class="catalog-list">
         <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Breaking Bad" width="170" height="250">
-        <a><div class="status-bar"></div></a></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
         <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BYzJjZDkxMDgtZDBkNC00ZGJlLTk0NzgtZDhjZGIxZDAzZDY2XkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Vox Machina" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Office" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BY2E3MzQxMmUtYWYxMS00NWExLThmNWItMzU4YjMyYjE4ODc2XkEyXkFqcGdeQXVyNDIyNjA2MTk@._V1_.jpg" alt="The Sopranos" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BMGMyZmE4MmUtNWJjYS00OTYwLWFmMTYtZTc5NzgyMWFjNjU5XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg" alt="Fargo" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BNGM0YTk3MWEtN2JlZC00ZmZmLWIwMDktZTMxZGE5Zjc2MGExXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt="Hunter x Hunter" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
+        <li><img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?resize=512%2C512&ssl=1" alt="Prime Video" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
     </ul>
 
     <ul class="catalog-list">
         <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BZDIzYzJhODUtOTU5Ny00NzY5LTg5YmQtOWU4ODBjYjMyMmEzXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_.jpg" alt="The Last of Us" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
+        <li><img src="https://pbs.twimg.com/profile_images/1568215827396034563/omtKNCqi_400x400.jpg" alt="Disney Plus" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
         <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg" alt="Game of Thrones" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt="Jujutsu Kaisen" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Better Call Saul" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg" alt="Avatar: The Last Airbender" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
-        </div>
-        <div class="catalog_div">
-        <li><img src="https://m.media-amazon.com/images/M/MV5BMTY0ODc2NTc0NF5BMl5BanBnXkFtZTgwMDcyNTAwNzM@._V1_.jpg" alt="True Detective" width="170" height="250"></li>
-        <a><div class="status-bar"></div></a></li>
+        <li><img src="https://static.wikia.nocookie.net/hbo-max/images/2/28/Mainpage_Logo.png" alt="HBO Max" width="250" height="250">
+        <a><div class="stream-status-bar"></div></a></li>
         </div>
     </ul>
 
