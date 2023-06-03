@@ -23,6 +23,7 @@
   "homepage": "https://github.com/JoaoLantyer/A3-Usability-CODEX#readme",
   "dependencies": {
     "consign": "^0.1.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^2.0.22",
     "sqlite3": "^5.1.6"

@@ -6,7 +6,7 @@ Tabelas.init(db);
 
 const app = customExpress();
 
-app.listen(3001, () => console.log('Servidor rodando na porta 3001'));
+app.listen(5000, () => console.log('Servidor rodando na porta 5000'));
 
 app.get('/', (req, res) => res.send('Servidor rodando, tudo ok'));
 
