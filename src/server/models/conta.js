@@ -2,9 +2,8 @@ const db = require('../config/conexao');
 
 class Conta {
     adicionar(conta){
-        conta.status = 'criada';
 
-        const sql = `INSERT INTO contas(nome, email, senha, status) VALUES('${conta.nome}', '${conta.email}', '${conta.senha}', '${conta.status}')`;
+        const sql = `INSERT INTO contas(usuario, email, senha) VALUES('${conta.usuario}', '${conta.email}', '${conta.senha}')`;
 
         db.run(sql, function (error) {
             if (error) {

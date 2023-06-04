@@ -1,8 +1,21 @@
 import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from "react";
 
 import './Navbar.css';
 
 const Navbar = () => {
+
+    const [logado, setLogado] = useState(false)
+    
+    useEffect(() => {
+        setLogado(localStorage.getItem('usuario'));
+      }, []);
+    
+    const handleLogout = () => {
+        setLogado(false);
+        localStorage.clear();
+      };
+
     return (
         <nav>
 
@@ -16,17 +29,23 @@ const Navbar = () => {
 
             <ul className="nav-list">
 
-            <li><NavLink
-            className={({ isActive }) => (isActive ? "active" : undefined)}
-            to="/login">
-                LOGIN
-            </NavLink></li>
+            {logado ? (
+                <li className="user-menu"><p>USER</p>
+                <ul>
+                <li className="user-options"><button onClick={handleLogout}>SAIR DA SUA CONTA</button></li>
+                </ul></li>) : (<>
+                    <li><NavLink
+                    className={({ isActive }) => (isActive ? "active" : undefined)}
+                    to="/login">
+                        LOGIN
+                    </NavLink></li>
 
-            <li><NavLink
-            className={({ isActive }) => (isActive ? "active" : undefined)}
-            to="/cadastrar">
-                CADASTRAR
-            </NavLink></li>
+                    <li><NavLink
+                    className={({ isActive }) => (isActive ? "active" : undefined)}
+                    to="/cadastrar">
+                        CADASTRAR
+                    </NavLink></li></>
+                    )}
 
             <li><NavLink
             className={({ isActive }) => (isActive ? "active" : undefined)}

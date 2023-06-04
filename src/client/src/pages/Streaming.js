@@ -1,4 +1,5 @@
 import React from "react";
+import './Pages.css';
 
 const Streaming = () => {
     return (

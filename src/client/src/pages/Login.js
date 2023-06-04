@@ -1,65 +1,68 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import { useState } from "react";
 import api from '../api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
-    const[nome, setNome] = useState();
-    const[email, setEmail] = useState();
-    const[senha, setSenha] = useState();
+    const [usuario, setUsuario] = useState("");
+    const [senha, setSenha] = useState("");
+    const [erroLogin, setErroLogin] = useState(false);
+    const navigate = useNavigate();
 
     const enviarDados = (e) => {
         e.preventDefault();
-        console.log(`Usuário ${nome} com email ${email} e senha ${senha}`);
-    }
+        setErroLogin(false);
 
-    const[contas, setContas] = useState([]);
+        const formData = {
+            usuario: usuario,
+            senha: senha,
+          };
 
-    useEffect(() => {
-        api.get('contas').then(response => {
-            setContas(response.data);
-        });
-    }, []);
+          api.post("/login", formData)
+          .then((res) => {
+            if(res.data.validation){
+
+                localStorage.setItem('usuario', JSON.stringify(res.data))
+                console.log(res.data)
+                navigate('/')
+                window.location.reload(true);
+
+            }else{
+                setErroLogin(true);
+            }
+          })
+
+          .catch((error) => {
+            console.error(error);
+            setErroLogin(true);
+          });
+      };
 
     return (
         <div>
             <h2>LOGIN</h2>
 
-            <p>Nome digitado: {nome}</p>
+            <p>Usuário digitado: {usuario}</p>
             <form onSubmit={enviarDados}>
                 <div>
-                    <label htmlFor="nome">Nome:</label>
-                    <input type="text" id="nome" name="name" placeholder="Digite seu nome"
-                    onChange={(e) => setNome (e.target.value)} />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="text" id="email" name="email" placeholder="Digite seu email"
-                    onChange={(e) => setEmail (e.target.value)} />
+                    <label htmlFor="usuario">Usuário:</label>
+                    <input type="text" id="usuario" name="name" placeholder="Digite seu usuário" maxLength={20}
+                    onChange={(e) => setUsuario (e.target.value)} required />
                 </div>
                 <div>
                     <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha"
-                    onChange={(e) => setSenha (e.target.value)} />
+                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
+                    onChange={(e) => setSenha (e.target.value)} required />
                 </div>
-                <div>
-                    <input type="submit" value="Cadastrar"/>
-                </div>
-            </form>
 
-            <h1>Contas</h1>
-            <ul className="contas">
-                {contas &&
-                 contas.map((conta) => (
-                    <li key={conta.id}>
-                        <p>{conta.nome}</p>
-                        <p>{conta.email}</p>
-                        <p>{conta.senha}</p>
-                        <Link to={`/conta/${conta.id}`}>Detalhes</Link>
-                    </li>
-                 ))}
-            </ul>
+                {erroLogin && <p>Seu login falhou, cheque suas credenciais e tente novamente.</p>}
+
+                <div>
+                    <input type="submit" value="LOGIN"/>
+                </div>
+            </form> 
+
+
         </div>
     )
 };
