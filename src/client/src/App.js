@@ -7,6 +7,7 @@ import Series from './pages/Series';
 import Streaming from './pages/Streaming';
 import Login from './pages/Login';
 import Cadastrar from './pages/Cadastrar';
+import CadastrarSerie from './pages/CadastrarSerie';
 
 // Components
 import Navbar from './components/Navbar';
@@ -24,6 +25,7 @@ function App() {
         <Route path ="streaming" element={<Streaming />} />
         <Route path ="login" element={<Login />} />
         <Route path ="cadastrar" element={<Cadastrar />} />
+        <Route path ="cadastrarserie" element={<CadastrarSerie />} />
       </Routes>
       </BrowserRouter>
 

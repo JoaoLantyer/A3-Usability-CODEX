@@ -11,7 +11,6 @@ a{
     opacity: 0.7;
     text-decoration: none;
     transition: 0.3s;
-    line-height:34px;
 }
 
 a:hover{
@@ -38,6 +37,7 @@ a:hover{
     display:flex;
     letter-spacing: 3px;
     margin-left: 32px;
+    line-height: 8vh;
     font-weight:bold;
     object-fit:contain;
 }
@@ -45,7 +45,6 @@ a:hover{
 .nav-list a {
     margin: 0 10px;
     padding: 5px;
-    line-height: 8vh;
 }
 
 .active {
@@ -55,7 +54,7 @@ a:hover{
 .search-bar{
     opacity: 0.5;
     padding-left:10px;
-    height: 30px;
+    height: 25px;
     width: 150px;
     border-radius: 20px;
     background-image: url(../images/pesquisa.png);
@@ -98,20 +97,25 @@ a:hover{
     width: 200px;
 }
 
-.user-menu p{
-    padding-top:10px;
-    padding-bottom:10px;
-    padding-left:30px;
-    padding-right:30px;
+.user{
+    cursor: pointer;
+    margin: 0 10px;
+    padding-left:25px;
+    padding-right:15px;
     background-image: url(../images/user.png), url(../images/seta-baixo.png);
-    background-size: 25px 25px, 10px 10px;
-    background-position: 0px, 85px center;
+    background-size: 20px 20px, 10px 10px;
+    background-position: 0px, 80px center;
     background-repeat: no-repeat;
 }
 
 .user-options{
+    cursor: pointer;
     font-size:small;
     letter-spacing: normal;
     font-weight: normal;
     line-height:12px;
+}
+
+.user-options:hover{
+    background-color: #2E2E2E;
 }

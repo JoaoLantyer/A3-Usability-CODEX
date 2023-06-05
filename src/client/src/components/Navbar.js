@@ -30,9 +30,9 @@ const Navbar = () => {
             <ul className="nav-list">
 
             {logado ? (
-                <li className="user-menu"><p>USER</p>
+                <li className="user-menu"><div className="user">USER</div>
                 <ul>
-                <li className="user-options"><button onClick={handleLogout}>SAIR DA SUA CONTA</button></li>
+                <li className="user-options" onClick={handleLogout}><div>SAIR DA SUA CONTA</div></li>
                 </ul></li>) : (<>
                     <li><NavLink
                     className={({ isActive }) => (isActive ? "active" : undefined)}
@@ -50,7 +50,7 @@ const Navbar = () => {
             <li><NavLink
             className={({ isActive }) => (isActive ? "active" : undefined)}
             to="/series">
-                SERIES
+                SÉRIES
             </NavLink></li>
 
             <li><NavLink

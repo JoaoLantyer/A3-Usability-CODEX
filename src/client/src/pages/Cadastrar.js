@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import api from '../api';
+import './Account.css';
 
 const Cadastrar = () => {
 
@@ -9,14 +10,21 @@ const Cadastrar = () => {
     const[email, setEmail] = useState();
     const[senha, setSenha] = useState();
     const[confirmarSenha, setConfirmarSenha] = useState();
-    const [erroSenha, setErroSenha] = useState(false);
-    const [erroUsuario, setErroUsuario] = useState(false);
-    const [erroEmail, setErroEmail] = useState(false);
+    const[erroSenha, setErroSenha] = useState(false);
+    const[erroUsuario, setErroUsuario] = useState(false);
+    const[erroEmail, setErroEmail] = useState(false);
+    const[contaCriada, setContaCriada] = useState(false);
     const[contas, setContas] = useState([]);
-    const [contaCriada, setContaCriada] = useState(false);
+    const[message, setMessage] = useState('');
+    const[loginLink, setLoginLink] = useState('');
 
     const enviarDados = (e) => {
         e.preventDefault();
+
+        setErroUsuario(false);
+        setErroEmail(false);
+        setErroSenha(false);
+        setContaCriada(false);
 
         if(contas.map(x => x.usuario).includes(usuario)){
             setErroUsuario(true);
@@ -48,56 +56,62 @@ const Cadastrar = () => {
         });
     }, []);
 
+    useEffect(() => {
+        if (erroUsuario) {
+            setMessage("Nome de usuário já existe.");
+          } else if (erroEmail) {
+            setMessage("Email já cadastrado.");
+          } else if (erroSenha) {
+            setMessage("As senhas não coincidem.");
+          } else if (contaCriada) {
+            setMessage("Conta criada com sucesso!");
+            setLoginLink("faça o login clicando aqui");
+          } else {
+            setMessage("");
+        }
+      }, [erroUsuario, erroEmail, erroSenha, contaCriada]);
+
+
+    
+
     return (
         
         <div>
-            <h2>CADASTRAR</h2>
+            <div className="container">
+                CADASTRAR
+                <form onSubmit={enviarDados}>
+                    <div className="data">
+                        <label htmlFor="usuario">Usuario:</label>
+                        <input type="text" id="usuario" name="name" placeholder="Digite seu usuario" maxLength={20}
+                        onChange={(e) => setUsuario (e.target.value)} required />
+                    </div>
+                    <div className="data">
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Digite seu email" maxLength={254}
+                        onChange={(e) => setEmail (e.target.value)} required />
+                    </div>
+                    <div className="data">
+                        <label htmlFor="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
+                        onChange={(e) => setSenha (e.target.value)} required />
+                    </div>
+                    <div className="data">
+                        <label htmlFor="confirmarSenha">Confirme sua Senha:</label>
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" maxLength={128}
+                        onChange={(e) => setConfirmarSenha (e.target.value)} required />
+                    </div>
 
-            <p>Usuário digitado: {usuario}</p>
-            <form onSubmit={enviarDados}>
-                <div>
-                    <label htmlFor="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="name" placeholder="Digite seu usuario" maxLength={20}
-                    onChange={(e) => setUsuario (e.target.value)} required />
-                </div>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Digite seu email" maxLength={254}
-                    onChange={(e) => setEmail (e.target.value)} required />
-                </div>
-                <div>
-                    <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
-                    onChange={(e) => setSenha (e.target.value)} required />
-                </div>
-                <div>
-                    <label htmlFor="confirmarSenha">Confirme sua Senha:</label>
-                    <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" maxLength={128}
-                    onChange={(e) => setConfirmarSenha (e.target.value)} required />
-                </div>
+                    <div className="messageContainer">
+                    <p className={contaCriada ? "success" : "failed"}>{message} </p> <NavLink className="link" to="/login">{loginLink}</NavLink>
+                    </div>
 
-                {erroUsuario && <p>Nome de usuário já existe</p>}
-                {erroEmail && <p>Email já cadastrado</p>}
-                {erroSenha && <p>As senhas não coincidem</p>}
-                {contaCriada && <p>Conta criada com sucesso!</p>}
+                    <div className="btn">
+                        <div className="inner"></div>
+                        <input type="submit" value="Cadastrar"/>
+                    </div>
+                </form>
 
-                <div>
-                    <input type="submit" value="Cadastrar"/>
-                </div>
-            </form>
-
-            <h1>Contas</h1>
-            <ul className="contas">
-                {contas &&
-                 contas.map((conta) => (
-                    <li key={conta.id}>
-                        <p>{conta.usuario}</p>
-                        <p>{conta.email}</p>
-                        <p>{conta.senha}</p>
-                        <Link to={`/conta/${conta.id}`}>Detalhes</Link>
-                    </li>
-                 ))}
-            </ul>
+            </div>
         </div>
     )
 };

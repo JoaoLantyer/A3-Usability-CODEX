@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import api from '../api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
+import './Account.css';
 
 const Login = () => {
     const [usuario, setUsuario] = useState("");
@@ -40,27 +41,31 @@ const Login = () => {
 
     return (
         <div>
-            <h2>LOGIN</h2>
+            <div className="container">
+            LOGIN
+                <form onSubmit={enviarDados}>
+                    <div className="data">
+                        <label htmlFor="usuario">Usuário:</label>
+                        <input type="text" id="usuario" name="usuario" placeholder="Digite seu usuário" maxLength={20}
+                        onChange={(e) => setUsuario (e.target.value)} required />
+                    </div>
+                    <div className="data">
+                        <label htmlFor="senha">Senha:</label>
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
+                        onChange={(e) => setSenha (e.target.value)} required />
+                    </div>
 
-            <p>Usuário digitado: {usuario}</p>
-            <form onSubmit={enviarDados}>
-                <div>
-                    <label htmlFor="usuario">Usuário:</label>
-                    <input type="text" id="usuario" name="name" placeholder="Digite seu usuário" maxLength={20}
-                    onChange={(e) => setUsuario (e.target.value)} required />
-                </div>
-                <div>
-                    <label htmlFor="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
-                    onChange={(e) => setSenha (e.target.value)} required />
-                </div>
+                    {erroLogin && <p class="failed">Seu login falhou, cheque suas credenciais e tente novamente.</p>}
 
-                {erroLogin && <p>Seu login falhou, cheque suas credenciais e tente novamente.</p>}
+                    <div className="btn">
+                        <div className="inner"></div>
+                            <input type="submit" value="LOGIN"/>
+                    </div>
 
-                <div>
-                    <input type="submit" value="LOGIN"/>
-                </div>
-            </form> 
+                    <div>Ainda não é membro?<NavLink className="link" to="/cadastrar">Cadastre-se.</NavLink></div>
+
+                </form>
+            </div>
 
 
         </div>
