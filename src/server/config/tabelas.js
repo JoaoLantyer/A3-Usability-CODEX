@@ -3,6 +3,7 @@ class Tabelas{
         this.conexao = conexao;
         this.criarContas();
         this.criarSeries();
+        this.criarPlataformas();
     }
 
     criarContas(){
@@ -15,6 +16,14 @@ class Tabelas{
 
     criarSeries(){
         const sql = 'CREATE TABLE IF NOT EXISTS series (id INTEGER PRIMARY KEY, titulo varchar(20) UNIQUE NOT NULL, url varchar(2048) UNIQUE NOT NULL, plataforma varchar(20) NOT NULL, plataforma2 varchar(20), plataforma3 varchar(20))';
+        
+        this.conexao.serialize(() => {
+            this.conexao.run(sql);
+        });
+    }
+
+    criarPlataformas(){
+        const sql = 'CREATE TABLE IF NOT EXISTS plataformas (id INTEGER PRIMARY KEY, nome varchar(20) UNIQUE NOT NULL, url varchar(2048) UNIQUE NOT NULL)';
         
         this.conexao.serialize(() => {
             this.conexao.run(sql);

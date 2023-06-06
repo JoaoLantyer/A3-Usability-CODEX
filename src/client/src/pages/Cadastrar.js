@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../api';
-import './Account.css';
+import './Forms.css';
 
 const Cadastrar = () => {
 
@@ -102,7 +102,7 @@ const Cadastrar = () => {
                     </div>
 
                     <div className="messageContainer">
-                    <p className={contaCriada ? "success" : "failed"}>{message} </p> <NavLink className="link" to="/login">{loginLink}</NavLink>
+                    <p className={contaCriada ? "success" : "failed"}>{message} </p> <Link className="link" to="/login">{loginLink}</Link>
                     </div>
 
                     <div className="btn">

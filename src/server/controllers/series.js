@@ -18,4 +18,30 @@ module.exports = app => {
         Serie.adicionar(serie);
         res.send('Serie salva com sucesso!');
     });
+
+
+  app.delete('/series/:id', (req, res) => {
+    const id = req.params.id;
+    Serie.excluir(id, (err) => {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send('Internal Server Error');
+      } else {
+        res.send('Serie excluída com sucesso!');
+      }
+    });
+  });
+
+  app.put('/series/:id', (req, res) => {
+    const id = req.params.id;
+    const updatedSerie = req.body;
+    Serie.atualizar(id, updatedSerie, (err) => {
+      if (err) {
+        console.error(err.message);
+        res.status(500).send('Internal Server Error');
+      } else {
+        res.send('Série atualizada com sucesso!');
+      }
+    });
+  });
 };

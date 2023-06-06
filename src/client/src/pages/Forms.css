@@ -1,7 +1,6 @@
-.container {
+.container, .container-criar, .container-apagar {
     position: absolute;
     top: 50%;
-    left: 50%;
     transform:translate(-50%, -50%);
     background: #EDEDED;
     width: 500px;
@@ -11,17 +10,29 @@
     font-weight: bold;
 }
 
-.container .text {
+.container{
+    left: 50%;
+}
+
+.container-criar {
+    left: 20%;
+}
+
+.container-apagar{
+    left: 80%;
+}
+
+.container .text,  .container-criar .text, .container-apagar .text{
     font-size: 35px;
     font-weight: 600;
     text-align: center;
 }
 
-.container form {
+.container form,  .container-criar form, .container-apagar form {
     margin-top: -20px;
 }
 
-.container form .data {
+.container form .data, .container-criar form .data, .container-apagar form .data {
     text-align: left;
     height: 45px;
     width: 100%;

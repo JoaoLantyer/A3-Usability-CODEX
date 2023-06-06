@@ -1,78 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import api from '../api';
 import './Pages.css';
 
 const Series = () => {
-    return (
-        <div>
-            
-            <div className="title-menu">
+  const [series, setSeries] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 2;
 
-                <h3>CATÁLOGO DE SÉRIES</h3>
+  useEffect(() => {
+    api.get('series').then(response => {
+      setSeries(response.data);
+    });
+  }, []);
 
-            </div>
+  const chunkArray = (arr, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < arr.length; i += size) {
+      const chunk = arr.slice(i, i + size);
+      chunkedArray.push(chunk);
+    }
+    return chunkedArray;
+  };
 
-            <div className= "imgwrapper">
+  const seriesChunks = chunkArray(series, 6);
+  const totalPages = Math.ceil(seriesChunks.length / pageSize);
 
-                <ul className="catalog-series">
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Breaking Bad" />
-                    <div className="status-bar"></div></li>
+  const NextPage = () => {
+    if(currentPage < totalPages){
+        handlePageChange(currentPage + 1);
+    }
+  };
 
+  const PreviousPage = () => {
+    if(currentPage > 1){
+        handlePageChange(currentPage - 1);
+    }
+  };
 
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BYzJjZDkxMDgtZDBkNC00ZGJlLTk0NzgtZDhjZGIxZDAzZDY2XkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Vox Machina" />
-                    <div className="status-bar"></div></li>
+  const displayedChunks = seriesChunks.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Office" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BY2E3MzQxMmUtYWYxMS00NWExLThmNWItMzU4YjMyYjE4ODc2XkEyXkFqcGdeQXVyNDIyNjA2MTk@._V1_.jpg" alt="The Sopranos" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BMGMyZmE4MmUtNWJjYS00OTYwLWFmMTYtZTc5NzgyMWFjNjU5XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg" alt="Fargo" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BNGM0YTk3MWEtN2JlZC00ZmZmLWIwMDktZTMxZGE5Zjc2MGExXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt="Hunter x Hunter" />
-                    <div className="status-bar"></div></li>
-
-                </ul>
-
-                <ul className="catalog-series">
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BZDIzYzJhODUtOTU5Ny00NzY5LTg5YmQtOWU4ODBjYjMyMmEzXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_.jpg" alt="The Last of Us" />
-                    <div className="status-bar"></div></li>
-                   
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg" alt="Game of Thrones" />
-                    <div className="status-bar"></div></li>
-                    
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BMTMwMDM4N2EtOTJiYy00OTQ0LThlZDYtYWUwOWFlY2IxZGVjXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg" alt="Jujutsu Kaisen" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BZDA4YmE0OTYtMmRmNS00Mzk2LTlhM2MtNjk4NzBjZGE1MmIyXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Better Call Saul" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_.jpg" alt="Avatar: The Last Airbender" />
-                    <div className="status-bar"></div></li>
-
-
-                    <li><img src="https://m.media-amazon.com/images/M/MV5BMTY0ODc2NTc0NF5BMl5BanBnXkFtZTgwMDcyNTAwNzM@._V1_.jpg" alt="True Detective" />
-                    <div className="status-bar"></div></li>
-
-                </ul>
-
-                <p className="page-selector">1/1</p>
-
-            </div>
-
+  return (
+    <div>
+      <div className="title-menu">
+        <h3>CATÁLOGO DE SÉRIES</h3>
+        
+        <div className="submenu">
+        <Link className="menu-left" to="/cadastrarserie">EDITAR CATÁLOGO</Link>
         </div>
-    )
+        
+      </div>
+
+      <div className="imgwrapper">
+        {displayedChunks.map((chunk, index) => (
+          <ul className="catalog-series" key={index}>
+            {chunk.map(serie => (
+              <li key={serie.id}>
+                <img src={serie.url} alt={serie.titulo} />
+                <div className="status-bar"></div>
+              </li>
+            ))}
+          </ul>
+        ))}
+
+        <div className="page-selector">
+        <div className="back" onClick={PreviousPage}> </div><p>{currentPage}/{totalPages}</p><div className="next" onClick={NextPage}></div>
+        </div>
+        
+      </div>
+    </div>
+  );
 };
 
 export default Series;

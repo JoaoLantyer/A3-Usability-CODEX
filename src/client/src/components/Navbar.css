@@ -98,14 +98,32 @@ a:hover{
 }
 
 .user{
+    text-transform: uppercase;
     cursor: pointer;
-    margin: 0 10px;
     padding-left:25px;
-    padding-right:15px;
-    background-image: url(../images/user.png), url(../images/seta-baixo.png);
-    background-size: 20px 20px, 10px 10px;
-    background-position: 0px, 80px center;
+    padding-right:5px;
+    background-image: url(../images/user.png);
+    background-size: 20px 20px;
+    background-position: 0px center;
     background-repeat: no-repeat;
+}
+
+.user-arrow{
+    width: 10px;
+    height: 10px;
+    background-image:url(../images/seta-baixo.png);
+    background-size: 10px 10px;
+    background-position: 0px center;
+    background-repeat: no-repeat;
+}
+
+.user-wrap{
+    margin: 0 10px;
+    padding-right:5px;
+    padding-left:5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .user-options{

@@ -1,47 +1,82 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
+import api from '../api';
 import './Pages.css';
 
-const Streaming = () => {
-    return (
-        <div>
-            
-            <div className="title-menu">
+const Plataformas = () => {
+  const [plataformas, setPlataformas] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 2;
 
-                <h3>PLATAFORMAS DE STREAMING</h3>
+  useEffect(() => {
+    api.get('plataformas').then(response => {
+      setPlataformas(response.data);
+    });
+  }, []);
 
-            </div>
+  const chunkArray = (arr, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < arr.length; i += size) {
+      const chunk = arr.slice(i, i + size);
+      chunkedArray.push(chunk);
+    }
+    return chunkedArray;
+  };
 
-            <div className= "imgwrapper">
+  const plataformasChunks = chunkArray(plataformas, 6);
+  const totalPages = Math.ceil(plataformasChunks.length / pageSize);
 
-                <ul className="catalog-streaming">
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
-                    <li><img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Netflix-new-icon.png" alt="Netflix" />
-                    <div className="status-bar"></div></li>
+  const NextPage = () => {
+    if(currentPage < totalPages){
+        handlePageChange(currentPage + 1);
+    }
+  };
 
+  const PreviousPage = () => {
+    if(currentPage > 1){
+        handlePageChange(currentPage - 1);
+    }
+  };
 
-                    <li><img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2020/10/12194108/Amazon-Prime.png?resize=512%2C512&ssl=1" alt="Prime Video" />
-                    <div className="status-bar"></div></li>
+  const displayedChunks = plataformasChunks.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
-
-                </ul>
-
-                <ul className="catalog-streaming">
-
-                    <li><img src="https://static-assets.bamgrid.com/product/disneyplus/images/share-default.14fadd993578b9916f855cebafb71e62.png" alt="Disney Plus" />
-                    <div className="status-bar"></div></li>
-                   
-
-                    <li><img src="https://static.wikia.nocookie.net/hbo-max/images/2/28/Mainpage_Logo.png" alt="HBO Max" />
-                    <div className="status-bar"></div></li>
-
-                </ul>
-
-                <p className="page-selector">1/1</p>
-
-            </div>
-
+  return (
+    <div>
+      <div className="title-menu">
+        <h3>PLATAFORMAS DE STREAMING</h3>
+        
+        <div className="submenu">
+        <Link className="menu-left" to="/cadastrarplataforma">EDITAR CATÁLOGO</Link>
         </div>
-    )
+        
+      </div>
+
+      <div className="imgwrapper">
+        {displayedChunks.map((chunk, index) => (
+          <ul className="catalog-streaming" key={index}>
+            {chunk.map(plataforma => (
+              <li key={plataforma.id}>
+                <img src={plataforma.url} alt={plataforma.nome} />
+                <div className="status-bar"></div>
+              </li>
+            ))}
+          </ul>
+        ))}
+
+        <div className="page-selector">
+        <div className="back" onClick={PreviousPage}> </div><p>{currentPage}/{totalPages}</p><div className="next" onClick={NextPage}></div>
+        </div>
+        
+      </div>
+    </div>
+  );
 };
 
-export default Streaming;
+export default Plataformas;

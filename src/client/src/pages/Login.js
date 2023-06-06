@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import api from '../api';
-import { useNavigate, NavLink } from 'react-router-dom';
-import './Account.css';
+import { useNavigate, Link } from 'react-router-dom';
+import './Forms.css';
 
 const Login = () => {
     const [usuario, setUsuario] = useState("");
@@ -23,7 +23,7 @@ const Login = () => {
           .then((res) => {
             if(res.data.validation){
 
-                localStorage.setItem('usuario', JSON.stringify(res.data))
+                localStorage.setItem('usuario', JSON.stringify(usuario))
                 console.log(res.data)
                 navigate('/')
                 window.location.reload(true);
@@ -62,7 +62,7 @@ const Login = () => {
                             <input type="submit" value="LOGIN"/>
                     </div>
 
-                    <div>Ainda não é membro?<NavLink className="link" to="/cadastrar">Cadastre-se.</NavLink></div>
+                    <div>Ainda não é membro?<Link className="link" to="/cadastrar">Cadastre-se.</Link></div>
 
                 </form>
             </div>
