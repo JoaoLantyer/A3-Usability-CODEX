@@ -6,18 +6,8 @@ nav {
     height:8vh;
 }
 
-a{
-    color: #EDEDED;
-    opacity: 0.7;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-a:hover{
-    opacity: 1;
-}
-
 .logo a{
+    color: #EDEDED;
     font-size: 32px;
     font-family: 'Poppins';
     font-weight: bolder;
@@ -30,11 +20,13 @@ a:hover{
     background-size: 40px 40px;
     background-position: 0px center;
     background-repeat: no-repeat;
+    opacity: 0.8;
+    transition: 0.3s;
 }
 
 .nav-list {
     list-style: none;
-    display:flex;
+    display: flex;
     letter-spacing: 3px;
     margin-left: 32px;
     line-height: 8vh;
@@ -45,9 +37,13 @@ a:hover{
 .nav-list a {
     margin: 0 10px;
     padding: 5px;
+    color: #EDEDED;
+    opacity: 0.5;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
-.active {
+.nav-list a:hover, .logo a:hover, .logo .active, .nav-list .active {
     opacity: 1;
 }
 

@@ -64,7 +64,9 @@ const Plataformas = () => {
             {chunk.map(plataforma => (
               <li key={plataforma.id}>
                 <img src={plataforma.url} alt={plataforma.nome} />
-                <div className="status-bar"></div>
+                <div className="status-bar">
+                  <div className="favoritar"></div>
+                </div>
               </li>
             ))}
           </ul>

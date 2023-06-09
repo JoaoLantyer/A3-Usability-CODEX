@@ -4,6 +4,7 @@ class Tabelas{
         this.criarContas();
         this.criarSeries();
         this.criarPlataformas();
+        this.criarTags();
     }
 
     criarContas(){
@@ -24,6 +25,14 @@ class Tabelas{
 
     criarPlataformas(){
         const sql = 'CREATE TABLE IF NOT EXISTS plataformas (id INTEGER PRIMARY KEY, nome varchar(20) UNIQUE NOT NULL, url varchar(2048) UNIQUE NOT NULL)';
+        
+        this.conexao.serialize(() => {
+            this.conexao.run(sql);
+        });
+    }
+
+    criarTags(){
+        const sql = `CREATE TABLE IF NOT EXISTS tags (id INTEGER PRIMARY KEY, nome varchar(20), usuario varchar(20), serie_id INTEGER, FOREIGN KEY (usuario) REFERENCES contas(usuario), FOREIGN KEY (serie_id) REFERENCES series(id))`;
         
         this.conexao.serialize(() => {
             this.conexao.run(sql);

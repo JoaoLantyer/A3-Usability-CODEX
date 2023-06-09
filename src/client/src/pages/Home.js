@@ -15,8 +15,10 @@ const Home = () => {
 
                     <img src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Breaking Bad" />
 
+                    <div className="home-bar">
                     <p>Breaking Bad</p>
                     <p className="like-percentage">99%</p>
+                    </div>
 
                 </div>
 
@@ -24,8 +26,10 @@ const Home = () => {
 
                     <img src="https://m.media-amazon.com/images/M/MV5BYzJjZDkxMDgtZDBkNC00ZGJlLTk0NzgtZDhjZGIxZDAzZDY2XkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Vox Machina" /> 
 
+                    <div className="home-bar">
                     <p>Vox Machina</p>
                     <p className="like-percentage">97%</p>
+                    </div>
 
                 </div>
 
@@ -33,8 +37,10 @@ const Home = () => {
 
                     <img src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Office" />
 
+                    <div className="home-bar">
                     <p>The Office</p>
                     <p className="like-percentage">96%</p>
+                    </div>
 
                 </div>
 

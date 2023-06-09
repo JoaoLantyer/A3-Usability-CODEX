@@ -5,14 +5,18 @@ import './Navbar.css';
 
 const Navbar = () => {
 
-    const [logado, setLogado] = useState(false);
-    
+    const [logado, setLogado] = useState("");
+
     useEffect(() => {
-        setLogado(localStorage.getItem('usuario'));
+        const usuarioLogado = localStorage.getItem('usuario');
+        if (usuarioLogado) {
+          const usuarioAchado = JSON.parse(usuarioLogado);
+          setLogado(usuarioAchado);
+        }
       }, []);
     
     const handleLogout = () => {
-        setLogado(false);
+        setLogado(undefined);
         localStorage.clear();
       };
 
@@ -32,7 +36,7 @@ const Navbar = () => {
             {logado ? (
                 <li className="user-menu">
                 <div className='user-wrap'>
-                <div className="user">{logado.slice(1, -1)}</div>
+                <div className="user">{logado}</div>
                 <div className='user-arrow'></div>
                 </div>
                 <ul>

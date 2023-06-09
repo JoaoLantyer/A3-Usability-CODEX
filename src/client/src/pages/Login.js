@@ -23,7 +23,7 @@ const Login = () => {
           .then((res) => {
             if(res.data.validation){
 
-                localStorage.setItem('usuario', JSON.stringify(usuario))
+                localStorage.setItem('usuario', JSON.stringify(usuario));
                 console.log(res.data)
                 navigate('/')
                 window.location.reload(true);
