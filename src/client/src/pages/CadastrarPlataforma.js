@@ -135,11 +135,11 @@ const CadastrarPlataforma = () => {
 
             <form onSubmit={enviarDados}>
                 <div className="data">
-                <label htmlFor="nome">Nome:</label>
+                <label htmlFor="nome">Nome da plataforma:</label>
                 <input type="text" id="nome" name="name" placeholder="Digite seu nome" maxLength={20} onChange={(e) => setNome(e.target.value)} required />
                 </div>
                 <div className="data">
-                <label htmlFor="url">Url:</label>
+                <label htmlFor="url">URL do seu ícone:</label>
                 <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={254} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
 
@@ -149,7 +149,7 @@ const CadastrarPlataforma = () => {
 
                 <div className="btn">
                     <div className="inner"></div>
-                <input type="submit" value="Cadastrar Plataforma" />
+                <input type="submit" value="Cadastrar" />
                 </div>
             </form>
         </div>
@@ -162,7 +162,7 @@ const CadastrarPlataforma = () => {
 
   
         <div className="data">
-        <label htmlFor="plataformaApagar">Plataforma que pretende apagar:</label>
+        <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
             <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
         </div>  
 
@@ -171,7 +171,7 @@ const CadastrarPlataforma = () => {
 
         <div className="btn">
             <div className="inner"></div>
-        <input type="submit" value="Apagar Plataforma" />
+        <input type="submit" value="Apagar" />
 
         
 
@@ -183,12 +183,12 @@ const CadastrarPlataforma = () => {
 
         </div>
 
-        <div className="container">
+        <div className="container-editar">
         EDITAR UMA PLATAFORMA
           <form onSubmit={handleEdit}>
 
           <div className="data">
-              <label htmlFor="plataformaEditar">Digite o Nome da plataforma que deseja editar:</label>
+              <label htmlFor="plataformaEditar">Nome da plataforma:</label>
               <input type="text" id="plataformaEditar" name="plataformaEditar" placeholder="Digite o nome" value={plataformaEditar} onChange={(e) => setPlataformaEditar(e.target.value)} required />
             </div>
 
@@ -209,7 +209,7 @@ const CadastrarPlataforma = () => {
 
             <div className="btn">
               <div className="inner"></div>
-              <input type="submit" value="Salvar Edição" />
+              <input type="submit" value="Editar" />
             </div>
           </form>
       </div>

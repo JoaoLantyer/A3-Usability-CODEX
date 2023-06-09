@@ -145,19 +145,17 @@ const CadastrarSerie = () => {
         <div className="container-criar">
         CADASTRAR UMA SÉRIE
 
-        <p>Título digitado: {titulo}</p>
-
             <form onSubmit={enviarDados}>
                 <div className="data">
                 <label htmlFor="titulo">Titulo:</label>
                 <input type="text" id="titulo" name="name" placeholder="Digite seu titulo" maxLength={20} onChange={(e) => setTitulo(e.target.value)} required />
                 </div>
                 <div className="data">
-                <label htmlFor="url">Url:</label>
+                <label htmlFor="url">URL do seu pôster:</label>
                 <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={254} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
                 <div className="data">
-                <label htmlFor="plataforma">Plataforma:</label>
+                <label htmlFor="plataforma">Plataformas em que a série está disponível:</label>
                 <input type="text" id="plataforma" name="plataforma" placeholder="Digite sua plataforma" maxLength={128} onChange={(e) => setPlataforma(e.target.value)} required />
                 </div>
                 <div className="data">
@@ -175,7 +173,7 @@ const CadastrarSerie = () => {
 
                 <div className="btn">
                     <div className="inner"></div>
-                <input type="submit" value="Cadastrar Série" />
+                <input type="submit" value="Cadastrar" />
                 </div>
             </form>
         </div>
@@ -188,7 +186,7 @@ const CadastrarSerie = () => {
 
   
         <div className="data">
-        <label htmlFor="serieApagar">Série que pretende apagar:</label>
+        <label htmlFor="serieApagar">Série a ser apagada:</label>
             <input type="text" id="serieApagar" name="serieApagar" placeholder="Digite a série que deseja apagar" value={serieApagar} onChange={(e) => setSerieApagar(e.target.value)} required />
         </div>  
 
@@ -197,7 +195,7 @@ const CadastrarSerie = () => {
 
         <div className="btn">
             <div className="inner"></div>
-        <input type="submit" value="Apagar Série" />
+        <input type="submit" value="Apagar" />
 
         
 
@@ -209,12 +207,12 @@ const CadastrarSerie = () => {
 
         </div>
 
-        <div className="container">
+        <div className="container-editar">
         EDITAR UMA SÉRIE
           <form onSubmit={handleEdit}>
 
           <div className="data">
-              <label htmlFor="serieEditar">Digite o Título da série que deseja editar:</label>
+              <label htmlFor="serieEditar">Título da série existente:</label>
               <input type="text" id="serieEditar" name="serieEditar" placeholder="Digite o título" value={serieEditar} onChange={(e) => setSerieEditar(e.target.value)} required />
             </div>
 
@@ -247,24 +245,10 @@ const CadastrarSerie = () => {
 
             <div className="btn">
               <div className="inner"></div>
-              <input type="submit" value="Salvar Edição" />
+              <input type="submit" value="Editar" />
             </div>
           </form>
       </div>
-
-      <h1>Series</h1>
-      <ul className="series">
-        {series.map((serie) => (
-          <li key={serie.id}>
-            <p>{serie.titulo}</p>
-            <p>{serie.url}</p>
-            <p>{serie.plataforma}</p>
-            <p>{serie.plataforma2}</p>
-            <p>{serie.plataforma3}</p>
-            <Link to={`/serie/${serie.id}`}>Detalhes</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

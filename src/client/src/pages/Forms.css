@@ -1,38 +1,32 @@
-.container, .container-criar, .container-apagar {
+.container, .container-criar, .container-apagar, .container-editar {
     position: absolute;
-    top: 50%;
+    left: 50%;
+    width: 500px;
     transform:translate(-50%, -50%);
     background: #EDEDED;
-    width: 500px;
     padding: 30px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     border-radius: 20px;
     font-weight: bold;
 }
 
-.container{
-    left: 50%;
+.container-criar {
+    top: 50%;
 }
 
-.container-criar {
-    left: 20%;
+.container-editar{
+    top:130%;   
 }
 
 .container-apagar{
-    left: 80%;
+    top: 190%;
 }
 
-.container .text,  .container-criar .text, .container-apagar .text{
-    font-size: 35px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.container form,  .container-criar form, .container-apagar form {
+.container form,  .container-criar form, .container-editar form, .container-apagar form {
     margin-top: -20px;
 }
 
-.container form .data, .container-criar form .data, .container-apagar form .data {
+.container form .data, .container-criar form .data, .container-editar form .data, .container-apagar form .data {
     text-align: left;
     height: 45px;
     width: 100%;
@@ -46,6 +40,7 @@ form .data input {
     font-size: 17px;
     border:1px solid silver;
 }
+
 form .data input:focus {
     border-color: #DA0037;
     border-bottom-width: 2px;
@@ -106,4 +101,19 @@ form .btn  input {
 
 .link:hover{
     text-decoration: underline;
+}
+
+@media (max-width: 999px) {
+
+    .container-criar, .container-apagar, .container-editar {
+        position: absolute;
+        left: 50%;
+        width: 200px;
+        transform:translate(-50%, -50%);
+        background: #EDEDED;
+        padding: 30px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        border-radius: 20px;
+        font-weight: bold;
+    }   
 }

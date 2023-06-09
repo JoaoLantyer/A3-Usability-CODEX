@@ -47,6 +47,19 @@ nav {
     opacity: 1;
 }
 
+.mobile-menu{
+    cursor: pointer;
+    display: none;
+}
+
+.mobile-menu div{
+    width: 32px;
+    height: 2px;
+    background: #EDEDED;
+    margin: 8px;
+}
+
+
 .search-bar{
     opacity: 0.5;
     padding-left:10px;
@@ -132,4 +145,73 @@ nav {
 
 .user-options:hover{
     background-color: #2E2E2E;
+}
+
+@media (max-width: 999px) {
+    
+    body {
+        overflow-x: hidden;
+    }
+
+    .nav-list {
+        display:none;
+        position: absolute;
+        top: 8vh;
+        left: 0;
+        width: 50vw;
+        height: 100%;
+        background: #444444;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+    }
+    .nav-list li {
+        margin-left: 0;
+        padding-top: 50px;
+        padding-bottom:50px;
+    }
+
+    .mobile-menu {
+        display: block;
+        order: 1;
+    }
+
+    .logo{
+        order: 2;
+    }
+
+    .user-mobile{
+        text-transform: uppercase;
+        color: #EDEDED;
+        opacity: 0.5;
+        transition: 0.3s;
+    }
+
+    .mobile-search{
+        width: 48px;
+        height: 38px;
+        display:flex;
+        background-image: url(../images/pesquisa-mobile.png);
+        background-size: 28px 28px;
+        background-position: center;
+        background-repeat: no-repeat;
+        order:3;
+    }
+
+    .buscar-style{
+        font-size:3vh;
+        height: 5vh;
+        width: 50vw;
+        background-size: 28px 28px;
+        background-position: 43vw center;
+        background-repeat: no-repeat;
+        order: 3;
+    }
+    
+    .mobile-menu.open .nav-list{
+        display: flex;
+        margin-left: 0;
+        margin-top: 0;
+    }
+
 }
