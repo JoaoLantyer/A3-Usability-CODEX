@@ -5,8 +5,18 @@ import './Pages.css';
 
 const Plataformas = () => {
   const [plataformas, setPlataformas] = useState([]);
+  const [logado, setLogado] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 2;
+
+  useEffect(() => {
+    const usuarioLogado = localStorage.getItem('usuario');
+    if (usuarioLogado) {
+      const usuarioAchado = JSON.parse(usuarioLogado);
+      setLogado(usuarioAchado);
+  }
+    
+  }, []);
 
   useEffect(() => {
     api.get('plataformas').then(response => {
@@ -53,7 +63,9 @@ const Plataformas = () => {
         <h3>PLATAFORMAS DE STREAMING</h3>
         
         <div className="submenu">
-        <Link className="menu-left" to="/cadastrarplataforma">EDITAR CATÁLOGO</Link>
+        {logado === "admin" && (
+          <Link className="menu-left" to="/cadastrarplataforma"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
+          )}
         </div>
         
       </div>
@@ -64,9 +76,6 @@ const Plataformas = () => {
             {chunk.map(plataforma => (
               <li key={plataforma.id}>
                 <img src={plataforma.url} alt={plataforma.nome} />
-                <div className="status-bar">
-                  <div className="favoritar"></div>
-                </div>
               </li>
             ))}
           </ul>

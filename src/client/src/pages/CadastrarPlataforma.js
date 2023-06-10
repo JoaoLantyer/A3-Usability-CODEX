@@ -131,16 +131,14 @@ const CadastrarPlataforma = () => {
         <div className="container-criar">
         CADASTRAR UMA PLATAFORMA
 
-        <p>Nome digitado: {nome}</p>
-
             <form onSubmit={enviarDados}>
                 <div className="data">
-                <label htmlFor="nome">Nome da plataforma:</label>
-                <input type="text" id="nome" name="name" placeholder="Digite seu nome" maxLength={20} onChange={(e) => setNome(e.target.value)} required />
+                <label htmlFor="nome">Nome da plataforma (sem caracteres especiais):</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" maxLength={50} onChange={(e) => setNome(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu ícone:</label>
-                <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={254} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
 
                 {erroNome && <p>Nome de plataforma já existe</p>}
@@ -160,17 +158,24 @@ const CadastrarPlataforma = () => {
 
           <div className="data">
               <label htmlFor="plataformaEditar">Nome da plataforma:</label>
-              <input type="text" id="plataformaEditar" name="plataformaEditar" placeholder="Digite o nome" value={plataformaEditar} onChange={(e) => setPlataformaEditar(e.target.value)} required />
+
+              <select id="plataformaEditar" name="plataformaEditar" placeholder="Escolha a plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
+              <option value="-">-</option>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
+                 ))}
+                </select>
             </div>
 
 
             <div className="data">
-              <label htmlFor="nomeEditar">Editar Nome:</label>
-              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome" value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} required />
+              <label htmlFor="nomeEditar">Editar Nome (sem caracteres especiais):</label>
+              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
             </div>
             
             {erroEditar && <p>Plataforma não existente no banco de dados</p>}
@@ -194,7 +199,7 @@ APAGAR UMA PLATAFORMA
 
       <div className="data">
           <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
-              <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
+              <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" maxLength={50} value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
           </div>  
 
           {erroApagar && <p>A Plataforma não existe.</p>}

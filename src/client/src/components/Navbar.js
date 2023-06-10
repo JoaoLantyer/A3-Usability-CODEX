@@ -36,7 +36,6 @@ const Navbar = () => {
                 </NavLink>
             </div>
 
-            <a className="mobile-search" href="buscar.html"></a>
             <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`} onClick={handleMobileMenuToggle}>
                 <div className="line1"></div>
                 <div className="line2"></div>
@@ -132,10 +131,6 @@ const Navbar = () => {
                         to="/streaming">
                         SERVIÇOS DE STREAMING
                     </NavLink>
-                </li>
-
-                <li>
-                    <input type="text" value="" name="" id="buscar" className="search-bar" />
                 </li>
             </ul>
         </nav>

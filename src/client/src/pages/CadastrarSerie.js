@@ -154,44 +154,42 @@ const CadastrarSerie = () => {
 
             <form onSubmit={enviarDados}>
                 <div className="data">
-                <label htmlFor="titulo">Titulo:</label>
-                <input type="text" id="titulo" name="name" placeholder="Digite seu titulo" maxLength={20} onChange={(e) => setTitulo(e.target.value)} required />
+                <label htmlFor="titulo">Titulo (sem caracteres especiais):</label>
+                <input type="text" id="titulo" name="name" placeholder="Digite seu titulo" maxLength={50} onChange={(e) => setTitulo(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu pôster:</label>
-                <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={254} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Cole a URL do pôster" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma">Plataforma onde a série está disponível:</label>
+                <select id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
+                <option value="-">-</option>
                 {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
                  ))}
+                </select>
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma2">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                <select id="plataforma2" name="plataforma2" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma2(e.target.value)} >
+                <option value="-">-</option>
                 {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
-                  <option value="-">-</option>
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>                  
                  ))}
+                </select>
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma3">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                <select id="plataforma3" name="plataforma3" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma3(e.target.value)} >
+                <option value="-">-</option> 
                 {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
-                  <option value="-">-</option>
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
                  ))}
+                </select>
                 </div>
 
                 {erroTitulo && <p>Nome de série já existe</p>}
@@ -211,49 +209,52 @@ const CadastrarSerie = () => {
 
           <div className="data">
               <label htmlFor="serieEditar">Título da série existente:</label>
-              <input type="text" id="serieEditar" name="serieEditar" placeholder="Digite o título" value={serieEditar} onChange={(e) => setSerieEditar(e.target.value)} required />
+              <select id="tituloExistente" name="tituloExistente" placeholder="Digite o título existente" onChange={(e) => setSerieEditar(e.target.value)} required >
+                <option value="-">-</option>
+                {series &&
+                 series.map((serie) => (
+                  <option key={serie.id} value={serie.titulo}>{serie.titulo}</option>
+                 ))}
+                </select>
             </div>
 
-
             <div className="data">
-              <label htmlFor="tituloEditar">Editar Título:</label>
-              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o novo título" value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
+              <label htmlFor="tituloEditar">Editar Título (sem caracteres especiais):</label>
+              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="plataformaEditar">Editar Plataforma:</label>
-              {plataformas &&
+              <select id="editarPlataforma" name="editarPlataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
+              <option value="-">-</option>
+                {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
                  ))}
+                </select>
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma2">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                <select id="editarPlataforma2" name="editarPlataforma2" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma2Editar(e.target.value)} >
+                <option value="-">-</option>
                 {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma2Editar(e.target.value)} required >
-                  <option value="-">-</option>
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>                  
                  ))}
+                </select>
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma3">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                <select id="editarPlataforma3" name="editarPlataforma3" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma3Editar(e.target.value)} >
+                <option value="-">-</option>
                 {plataformas &&
                  plataformas.map((plataforma) => (
-
-                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma3Editar(e.target.value)} required >
-                  <option value="-">-</option>
-                  <option value={plataforma.nome}>{plataforma.nome}</option>
-                 </select>
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>                  
                  ))}
+                </select>
                 </div>
             
             {erroEditar && <p>Série não existente no banco de dados</p>}
@@ -278,8 +279,14 @@ const CadastrarSerie = () => {
 
           <div className="data">
           <label htmlFor="serieApagar">Série a ser apagada:</label>
-              <input type="text" id="serieApagar" name="serieApagar" placeholder="Digite a série que deseja apagar" value={serieApagar} onChange={(e) => setSerieApagar(e.target.value)} required />
-          </div>  
+          <select id="serieApagar" name="serieApagar" placeholder="Digite a série que deseja apagar" onChange={(e) => setSerieApagar(e.target.value)} required >
+                <option value="-">-</option>
+                {series &&
+                 series.map((serie) => (
+                  <option key={serie.id} value={serie.titulo}>{serie.titulo}</option>
+                 ))}
+                </select>
+                </div>  
 
           {erroApagar && <p>A Série não existe.</p>}
           {serieApagada && <p>A Série foi apagada com sucesso.</p>}   

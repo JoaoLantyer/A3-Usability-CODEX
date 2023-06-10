@@ -31,9 +31,9 @@ const Series = () => {
 
       if (plataformaSelecionada) {
         filteredSeries = filteredSeries.filter(serie =>
-          serie.plataforma === plataformaSelecionada.nome ||
-          serie.plataforma2 === plataformaSelecionada.nome ||
-          serie.plataforma3 === plataformaSelecionada.nome
+          serie.plataforma === plataformaSelecionada ||
+          serie.plataforma2 === plataformaSelecionada ||
+          serie.plataforma3 === plataformaSelecionada
         );
       }
   
@@ -63,7 +63,7 @@ const Series = () => {
   
       setSeries(filteredSeries);
     });
-  }, [logado, tags, filtroAssistido, filtroCurtido, filtroNaoCurtido, filtroWatchlist]);
+  }, [logado, series, plataformas, tags, filtroAssistido, filtroCurtido, filtroNaoCurtido, filtroWatchlist]);
 
   useEffect(() => {
     api.get('plataformas').then(response => {
@@ -173,6 +173,10 @@ const Series = () => {
     return tags.some((tag) => tag.nome === tagName && tag.serie_id === serie.id && tag.usuario === usuario);
   };
 
+  const activeFilters =
+  filtroAssistido || filtroCurtido || filtroNaoCurtido || filtroWatchlist || plataformaSelecionada;
+
+
   return (
     <div>
       <div className="title-menu">
@@ -183,20 +187,21 @@ const Series = () => {
           <Link className="menu-left" to="/cadastrarserie"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
           )}
           <nav className="menu-right">
-            <div className="filtrar"><div className="menu-text">FILTRAR</div></div>
+          <div className={activeFilters ? 'filtrado' : 'naoFiltrado'}><div className="menu-text">FILTRAR</div></div>
             <ul>
-              <li className={filtroAssistido ? "checked" : ""} onClick={() => setFiltroAssistido(!filtroAssistido)}>ASSISTIDAS</li>
+            {logado && (
+              <><li className={filtroAssistido ? "checked" : ""} onClick={() => setFiltroAssistido(!filtroAssistido)}>ASSISTIDAS</li>
               <li className={filtroCurtido ? "checked" : ""} onClick={() => setFiltroCurtido(!filtroCurtido)}>CURTIDAS</li>
               <li className={filtroNaoCurtido ? "checked" : ""} onClick={() => setFiltroNaoCurtido(!filtroNaoCurtido)}>NÃO CURTIDAS</li>
-              <li className={filtroWatchlist ? "checked" : ""} onClick={() => setFiltroWatchlist(!filtroWatchlist)}>QUERO ASSISTIR</li>
+              <li className={filtroWatchlist ? "checked" : ""} onClick={() => setFiltroWatchlist(!filtroWatchlist)}>QUERO ASSISTIR</li></>)}
               <li className="available-on">DISPONÍVEIS NA:</li>
               
               {plataformas &&
                  plataformas.map((plataforma) => (
-              <ul key={plataforma.id}>
-              <li className={plataformaSelecionada === plataforma ? "checked" : ""} onClick={() => setPlataformaSelecionada(prevPlatforma => prevPlatforma === plataforma ? null : plataforma)}>
+              <li key={plataforma.id} className={plataformaSelecionada === plataforma.nome ? "checked" : ""}>
+              <li  className={plataformaSelecionada === plataforma.nome ? "checked" : ""} onClick={() => setPlataformaSelecionada(prevPlatforma => prevPlatforma === plataforma.nome ? null : plataforma.nome)}>
               {plataforma.nome}</li>
-              </ul>
+              </li>
               ))}
             </ul>
           </nav>

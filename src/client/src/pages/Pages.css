@@ -195,7 +195,7 @@ ul{
     background-color: #171717;
 }
 
-.filtrar {
+.naoFiltrado, .filtrado {
     cursor: pointer;
     color: #EDEDED;
     opacity: 0.7;
@@ -212,7 +212,11 @@ ul{
     background-repeat: no-repeat;
 }
 
-.filtrar:hover{
+.filtrado{
+    background-image: url(../images/filtrado.png);
+}
+
+.naoFiltrado:hover, .filtrado:hover{
     opacity: 1;
 }
 
@@ -242,7 +246,7 @@ ul{
     display: block;
 }
 
-.menu-right:hover .filtrar{
+.menu-right:hover .naoFiltrado, .menu-right:hover .filtrado {
     background-color: #444444;
 }
 
@@ -337,12 +341,12 @@ ul{
         background-position: 0px center;
     }
 
-    .menu-right:hover .filtrar{
+    .menu-right:hover .naoFiltrado, .menu-right:hover .filtrado{
         background-color: #171717;
         opacity: 1;
     }
 
-    .filtrar {
+    .naoFiltrado, .filtrado {
         padding-right: 5px;
         width: 20px;
         background-size: 20px 20px;

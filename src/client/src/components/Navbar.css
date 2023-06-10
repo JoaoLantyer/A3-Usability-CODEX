@@ -60,22 +60,6 @@ nav {
 }
 
 
-.search-bar{
-    opacity: 0.5;
-    padding-left:10px;
-    height: 25px;
-    width: 150px;
-    border-radius: 20px;
-    background-image: url(../images/pesquisa.png);
-    background-size: 13px 13px;
-    background-position: 135px center;
-    background-repeat: no-repeat;
-}
-
-.search-bar:hover{
-    opacity: 1;
-}
-
 .user-menu{
     color: #EDEDED;
     display: block;
@@ -173,11 +157,6 @@ nav {
 
     .mobile-menu {
         display: block;
-        order: 1;
-    }
-
-    .logo{
-        order: 2;
     }
 
     .user-mobile{
@@ -185,17 +164,6 @@ nav {
         color: #EDEDED;
         opacity: 0.5;
         transition: 0.3s;
-    }
-
-    .mobile-search{
-        width: 48px;
-        height: 38px;
-        display:flex;
-        background-image: url(../images/pesquisa-mobile.png);
-        background-size: 28px 28px;
-        background-position: center;
-        background-repeat: no-repeat;
-        order:3;
     }
 
     .buscar-style{
