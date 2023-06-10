@@ -138,7 +138,7 @@ const CadastrarPlataforma = () => {
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu ícone:</label>
-                <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Cole a URL do seu ícone" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
 
                 {erroNome && <p>Nome de plataforma já existe</p>}
@@ -175,7 +175,7 @@ const CadastrarPlataforma = () => {
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Cole a nova URL do seu ícone" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
             </div>
             
             {erroEditar && <p>Plataforma não existente no banco de dados</p>}
@@ -199,7 +199,14 @@ APAGAR UMA PLATAFORMA
 
       <div className="data">
           <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
-              <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" maxLength={50} value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
+
+          <select id="plataformaApagar" name="plataformaApagar" placeholder="Escolha a plataforma que deseja apagar" onChange={(e) => setPlataformaApagar(e.target.value)} required>
+              <option value="-">-</option>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
+                 ))}
+                </select>
           </div>  
 
           {erroApagar && <p>A Plataforma não existe.</p>}
