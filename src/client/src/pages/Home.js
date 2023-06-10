@@ -1,53 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import api from '../api';
 import './Pages.css';
 
 const Home = () => {
 
+    const [series, setSeries] = useState([]);
 
-    return (
+    useEffect(() => {
+        api.get('series')
+          .then(response => {
+            setSeries(response.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, []);
 
+      const seriesFavoritas = series.slice(0, 3);
+
+
+      return (
         <div>
             <h2>SÉRIES FAVORITAS DO CODEX</h2>
 
             <div className="imgwrapper">
-
-                <div className="home-series">
-
-                    <img src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_.jpg" alt="Breaking Bad" />
-
-                    <div className="home-bar">
-                    <p>Breaking Bad</p>
-                    <p className="like-percentage">99%</p>
+                {seriesFavoritas.map((serie) => (
+                    <div className="home-series" key={serie.id}>
+                        <img src={serie.url} alt={serie.title} />
+                        <div className="home-bar">
+                            <p>{serie.titulo}</p>
+                        </div>
                     </div>
-
-                </div>
-
-                <div className="home-series">
-
-                    <img src="https://m.media-amazon.com/images/M/MV5BYzJjZDkxMDgtZDBkNC00ZGJlLTk0NzgtZDhjZGIxZDAzZDY2XkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg" alt="Vox Machina" /> 
-
-                    <div className="home-bar">
-                    <p>Vox Machina</p>
-                    <p className="like-percentage">97%</p>
-                    </div>
-
-                </div>
-
-                <div className="home-series">
-
-                    <img src="https://m.media-amazon.com/images/M/MV5BMDNkOTE4NDQtMTNmYi00MWE0LWE4ZTktYTc0NzhhNWIzNzJiXkEyXkFqcGdeQXVyMzQ2MDI5NjU@._V1_.jpg" alt="The Office" />
-
-                    <div className="home-bar">
-                    <p>The Office</p>
-                    <p className="like-percentage">96%</p>
-                    </div>
-
-                </div>
-
+                ))}
             </div>
         </div>
-
-    )
+    );
 };
 
 export default Home;

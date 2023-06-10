@@ -154,35 +154,6 @@ const CadastrarPlataforma = () => {
             </form>
         </div>
 
-      <div className="container-apagar">
-
-        APAGAR UMA PLATAFORMA
-
-        <form onSubmit={handleApagar}>
-
-  
-        <div className="data">
-        <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
-            <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
-        </div>  
-
-         {erroApagar && <p>A Plataforma não existe.</p>}
-        {plataformaApagada && <p>A Plataforma foi apagada com sucesso.</p>}   
-
-        <div className="btn">
-            <div className="inner"></div>
-        <input type="submit" value="Apagar" />
-
-        
-
-        </div>
-        
-
-       
-        </form>
-
-        </div>
-
         <div className="container-editar">
         EDITAR UMA PLATAFORMA
           <form onSubmit={handleEdit}>
@@ -214,16 +185,30 @@ const CadastrarPlataforma = () => {
           </form>
       </div>
 
-      <h1>Plataformas</h1>
-      <ul className="plataformas">
-        {plataformas.map((plataforma) => (
-          <li key={plataforma.id}>
-            <p>{plataforma.nome}</p>
-            <p>{plataforma.url}</p>
-            <Link to={`/plataforma/${plataforma.id}`}>Detalhes</Link>
-          </li>
-        ))}
-      </ul>
+      <div className="container-apagar">
+
+APAGAR UMA PLATAFORMA
+
+      <form onSubmit={handleApagar}>
+
+
+      <div className="data">
+          <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
+              <input type="text" id="plataformaApagar" name="plataformaApagar" placeholder="Digite a plataforma que deseja apagar" value={plataformaApagar} onChange={(e) => setPlataformaApagar(e.target.value)} required />
+          </div>  
+
+          {erroApagar && <p>A Plataforma não existe.</p>}
+          {plataformaApagada && <p>A Plataforma foi apagada com sucesso.</p>}   
+
+          <div className="btn">
+              <div className="inner"></div>
+          <input type="submit" value="Apagar" />
+        </div>
+
+      </form>
+
+      </div>
+
     </div>
   );
 };

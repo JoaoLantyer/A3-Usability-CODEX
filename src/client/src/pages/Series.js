@@ -5,9 +5,15 @@ import './Pages.css';
 
 const Series = () => {
   const [series, setSeries] = useState([]);
+  const [plataformas, setPlataformas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [logado, setLogado] = useState("");
   const [tags, setTags] = useState([]);
+  const [plataformaSelecionada, setPlataformaSelecionada] = useState("");
+  const [filtroAssistido, setFiltroAssistido] = useState(false);
+  const [filtroCurtido, setFiltroCurtido] = useState(false);
+  const [filtroNaoCurtido, setFiltroNaoCurtido] = useState(false);
+  const [filtroWatchlist, setFiltroWatchlist] = useState(false);
   const pageSize = 2;
 
   useEffect(() => {
@@ -21,9 +27,50 @@ const Series = () => {
 
   useEffect(() => {
     api.get('series').then(response => {
-      setSeries(response.data);
+      let filteredSeries = response.data;
+
+      if (plataformaSelecionada) {
+        filteredSeries = filteredSeries.filter(serie =>
+          serie.plataforma === plataformaSelecionada.nome ||
+          serie.plataforma2 === plataformaSelecionada.nome ||
+          serie.plataforma3 === plataformaSelecionada.nome
+        );
+      }
+  
+      if (filtroAssistido) {
+        filteredSeries = filteredSeries.filter(serie =>
+          isTagged(logado, serie, "assistidos", tags)
+        );
+      }
+  
+      if (filtroCurtido) {
+        filteredSeries = filteredSeries.filter(serie =>
+          isTagged(logado, serie, "curtidos", tags)
+        );
+      }
+  
+      if (filtroNaoCurtido) {
+        filteredSeries = filteredSeries.filter(serie =>
+          isTagged(logado, serie, "naoCurtidos", tags)
+        );
+      }
+  
+      if (filtroWatchlist) {
+        filteredSeries = filteredSeries.filter(serie =>
+          isTagged(logado, serie, "watchlist", tags)
+        );
+      }
+  
+      setSeries(filteredSeries);
+    });
+  }, [logado, tags, filtroAssistido, filtroCurtido, filtroNaoCurtido, filtroWatchlist]);
+
+  useEffect(() => {
+    api.get('plataformas').then(response => {
+      setPlataformas(response.data);
     });
   }, []);
+  
 
   useEffect(() => {
     if (logado) {
@@ -71,36 +118,51 @@ const Series = () => {
   const handleTag = async (serie, nome, usuario) => {
     const tag = tags.find((x) => x.nome === nome && x.serie_id === serie.id);
   
-    if (tag !== undefined) {
+    if (tag !== undefined) { 
       const sendDeleteRequest = async () => {
         try {
-          const resp = await api.delete(`/tags/nome/${nome}/usuario/${usuario}/serie_id/${serie.id}`);
+          const resp = await api.delete(
+            `/tags/nome/${nome}/usuario/${usuario}/serie_id/${serie.id}`
+          );
           console.log(resp.data);
-          
-          setTags(prevTags => prevTags.filter((x) => !(x.nome === nome && x.serie_id === serie.id)));
+      
+          const updatedTags = tags.filter(
+            (x) => !(x.nome === nome && x.serie_id === serie.id)
+          );
+          setTags(updatedTags);
+      
+          const filteredSeries = series.filter((s) => s.id !== serie.id);
+          setSeries(filteredSeries);
         } catch (err) {
           console.error(err);
         }
       };
-  
-      await sendDeleteRequest();
+
+    await sendDeleteRequest();
+
     } else {
+
       const formData = {
         nome: nome,
         usuario: usuario,
         serie_id: serie.id,
       };
-  
+      
       const sendPostRequest = async () => {
         try {
           const resp = await api.post("/tags", formData);
           console.log(resp.data);
-          
-          setTags(prevTags => [...prevTags, resp.data]);
+      
+          const updatedTags = [...tags, resp.data];
+          setTags(updatedTags);
+      
+          const updatedSeries = [...series, serie];
+          setSeries(updatedSeries);
         } catch (err) {
           console.error(err);
         }
       };
+      
   
       await sendPostRequest();
     }
@@ -117,7 +179,27 @@ const Series = () => {
         <h3>CATÁLOGO DE SÉRIES</h3>
 
         <div className="submenu">
-          <Link className="menu-left" to="/cadastrarserie">EDITAR CATÁLOGO</Link>
+        {logado === "admin" && (
+          <Link className="menu-left" to="/cadastrarserie"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
+          )}
+          <nav className="menu-right">
+            <div className="filtrar"><div className="menu-text">FILTRAR</div></div>
+            <ul>
+              <li className={filtroAssistido ? "checked" : ""} onClick={() => setFiltroAssistido(!filtroAssistido)}>ASSISTIDAS</li>
+              <li className={filtroCurtido ? "checked" : ""} onClick={() => setFiltroCurtido(!filtroCurtido)}>CURTIDAS</li>
+              <li className={filtroNaoCurtido ? "checked" : ""} onClick={() => setFiltroNaoCurtido(!filtroNaoCurtido)}>NÃO CURTIDAS</li>
+              <li className={filtroWatchlist ? "checked" : ""} onClick={() => setFiltroWatchlist(!filtroWatchlist)}>QUERO ASSISTIR</li>
+              <li className="available-on">DISPONÍVEIS NA:</li>
+              
+              {plataformas &&
+                 plataformas.map((plataforma) => (
+              <ul key={plataforma.id}>
+              <li className={plataformaSelecionada === plataforma ? "checked" : ""} onClick={() => setPlataformaSelecionada(prevPlatforma => prevPlatforma === plataforma ? null : plataforma)}>
+              {plataforma.nome}</li>
+              </ul>
+              ))}
+            </ul>
+          </nav>
         </div>
 
       </div>

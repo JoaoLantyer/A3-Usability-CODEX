@@ -8,6 +8,7 @@ const CadastrarSerie = () => {
     //CREATE
   const [titulo, setTitulo] = useState("");
   const [url, setUrl] = useState("");
+  const [plataformas, setPlataformas] = useState([]);
   const [plataforma, setPlataforma] = useState("");
   const [plataforma2, setPlataforma2] = useState("");
   const [plataforma3, setPlataforma3] = useState("");
@@ -32,6 +33,12 @@ const CadastrarSerie = () => {
   const [erroTituloEditar, setErroTituloEditar] = useState(false);
   const [erroUrlEditar, setErroUrlEditar] = useState(false);
   const [serieEditada, setSerieEditada] = useState(false);
+
+  useEffect(() => {
+    api.get('plataformas').then(response => {
+      setPlataformas(response.data);
+    });
+  }, []);
 
 
   const enviarDados = (e) => {
@@ -155,16 +162,36 @@ const CadastrarSerie = () => {
                 <input type="url" id="url" name="url" placeholder="Digite seu url" maxLength={254} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
                 <div className="data">
-                <label htmlFor="plataforma">Plataformas em que a série está disponível:</label>
-                <input type="text" id="plataforma" name="plataforma" placeholder="Digite sua plataforma" maxLength={128} onChange={(e) => setPlataforma(e.target.value)} required />
+                <label htmlFor="plataforma">Plataforma onde a série está disponível:</label>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
                 </div>
                 <div className="data">
-                <label htmlFor="plataforma2">Plataforma2:</label>
-                <input type="text" id="plataforma2" name="plataforma2" placeholder="Digite sua plataforma2" maxLength={128} onChange={(e) => setPlataforma2(e.target.value)} required />
+                <label htmlFor="plataforma2">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
+                  <option value="-">-</option>
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
                 </div>
                 <div className="data">
-                <label htmlFor="plataforma3">Plataforma3:</label>
-                <input type="text" id="plataforma3" name="plataforma3" placeholder="Digite sua plataforma3" maxLength={128} onChange={(e) => setPlataforma3(e.target.value)} required />
+                <label htmlFor="plataforma3">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma(e.target.value)} required >
+                  <option value="-">-</option>
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
                 </div>
 
                 {erroTitulo && <p>Nome de série já existe</p>}
@@ -176,35 +203,6 @@ const CadastrarSerie = () => {
                 <input type="submit" value="Cadastrar" />
                 </div>
             </form>
-        </div>
-
-      <div className="container-apagar">
-
-        APAGAR UMA SÉRIE
-
-        <form onSubmit={handleApagar}>
-
-  
-        <div className="data">
-        <label htmlFor="serieApagar">Série a ser apagada:</label>
-            <input type="text" id="serieApagar" name="serieApagar" placeholder="Digite a série que deseja apagar" value={serieApagar} onChange={(e) => setSerieApagar(e.target.value)} required />
-        </div>  
-
-         {erroApagar && <p>A Série não existe.</p>}
-        {serieApagada && <p>A Série foi apagada com sucesso.</p>}   
-
-        <div className="btn">
-            <div className="inner"></div>
-        <input type="submit" value="Apagar" />
-
-        
-
-        </div>
-        
-
-       
-        </form>
-
         </div>
 
         <div className="container-editar">
@@ -227,16 +225,36 @@ const CadastrarSerie = () => {
             </div>
             <div className="data">
               <label htmlFor="plataformaEditar">Editar Plataforma:</label>
-              <input type="text" id="plataformaEditar" name="plataformaEditar" placeholder="Digite a nova plataforma" value={plataformaEditar} onChange={(e) => setPlataformaEditar(e.target.value)} required />
-            </div>
-            <div className="data">
-              <label htmlFor="plataforma2Editar">Editar Plataforma2:</label>
-              <input type="text" id="plataforma2Editar" name="plataforma2Editar" placeholder="Digite a nova plataforma2" value={plataforma2Editar} onChange={(e) => setPlataforma2Editar(e.target.value)} required />
-            </div>
-            <div className="data">
-              <label htmlFor="plataforma3Editar">Editar Plataforma3:</label>
-              <input type="text" id="plataforma3Editar" name="plataforma3Editar" placeholder="Digite a nova plataforma3" value={plataforma3Editar} onChange={(e) => setPlataforma3Editar(e.target.value)} required />
-            </div>
+              {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
+                </div>
+                <div className="data">
+                <label htmlFor="plataforma2">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma2Editar(e.target.value)} required >
+                  <option value="-">-</option>
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
+                </div>
+                <div className="data">
+                <label htmlFor="plataforma3">Outra plataforma onde a série está disponível (deixe em branco se não houver):</label>
+                {plataformas &&
+                 plataformas.map((plataforma) => (
+
+                <select key={plataforma.id} id="plataforma" name="plataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataforma3Editar(e.target.value)} required >
+                  <option value="-">-</option>
+                  <option value={plataforma.nome}>{plataforma.nome}</option>
+                 </select>
+                 ))}
+                </div>
             
             {erroEditar && <p>Série não existente no banco de dados</p>}
             {erroTituloEditar && <p>Nome de série já existe</p>}
@@ -249,6 +267,33 @@ const CadastrarSerie = () => {
             </div>
           </form>
       </div>
+
+
+      <div className="container-apagar">
+
+          APAGAR UMA SÉRIE
+
+          <form onSubmit={handleApagar}>
+
+
+          <div className="data">
+          <label htmlFor="serieApagar">Série a ser apagada:</label>
+              <input type="text" id="serieApagar" name="serieApagar" placeholder="Digite a série que deseja apagar" value={serieApagar} onChange={(e) => setSerieApagar(e.target.value)} required />
+          </div>  
+
+          {erroApagar && <p>A Série não existe.</p>}
+          {serieApagada && <p>A Série foi apagada com sucesso.</p>}   
+
+          <div className="btn">
+              <div className="inner"></div>
+          <input type="submit" value="Apagar" />
+          </div>
+
+          </form>
+
+          </div>
+
+
     </div>
   );
 };

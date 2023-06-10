@@ -19,6 +19,7 @@ const Navbar = () => {
     const handleLogout = () => {
         setLogado(undefined);
         localStorage.clear();
+        window.location.reload();
     };
 
     const handleMobileMenuToggle = () => {
