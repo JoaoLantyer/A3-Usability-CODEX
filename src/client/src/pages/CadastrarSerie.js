@@ -155,11 +155,11 @@ const CadastrarSerie = () => {
             <form onSubmit={enviarDados}>
                 <div className="data">
                 <label htmlFor="titulo">Titulo (sem caracteres especiais):</label>
-                <input type="text" id="titulo" name="name" placeholder="Digite seu titulo" maxLength={50} onChange={(e) => setTitulo(e.target.value)} required />
+                <input type="text" id="titulo" name="name" placeholder="Digite o título da série" maxLength={50} onChange={(e) => setTitulo(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu pôster:</label>
-                <input type="url" id="url" name="url" placeholder="Cole a URL do pôster" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Cole a URL do seu pôster" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma">Plataforma onde a série está disponível:</label>
@@ -209,7 +209,7 @@ const CadastrarSerie = () => {
 
           <div className="data">
               <label htmlFor="serieEditar">Título da série existente:</label>
-              <select id="tituloExistente" name="tituloExistente" placeholder="Digite o título existente" onChange={(e) => setSerieEditar(e.target.value)} required >
+              <select id="tituloExistente" name="tituloExistente" placeholder="Digite o título da série existente" onChange={(e) => setSerieEditar(e.target.value)} required >
                 <option value="-">-</option>
                 {series &&
                  series.map((serie) => (
@@ -220,11 +220,11 @@ const CadastrarSerie = () => {
 
             <div className="data">
               <label htmlFor="tituloEditar">Editar Título (sem caracteres especiais):</label>
-              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
+              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o seu novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite a nova URL" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite nova URL do seu pôster" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="plataformaEditar">Editar Plataforma:</label>

@@ -134,7 +134,7 @@ const CadastrarPlataforma = () => {
             <form onSubmit={enviarDados}>
                 <div className="data">
                 <label htmlFor="nome">Nome da plataforma (sem caracteres especiais):</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite seu nome" maxLength={50} onChange={(e) => setNome(e.target.value)} required />
+                <input type="text" id="nome" name="nome" placeholder="Digite o nome da plataforma" maxLength={50} onChange={(e) => setNome(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu ícone:</label>
@@ -171,7 +171,7 @@ const CadastrarPlataforma = () => {
 
             <div className="data">
               <label htmlFor="nomeEditar">Editar Nome (sem caracteres especiais):</label>
-              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} required />
+              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome da plataforma" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} required />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL:</label>
