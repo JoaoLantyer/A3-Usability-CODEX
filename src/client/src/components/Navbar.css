@@ -141,7 +141,7 @@ nav {
         display:none;
         position: absolute;
         top: 8vh;
-        left: 0;
+        right: 0;
         width: 50vw;
         height: 100%;
         background: #444444;

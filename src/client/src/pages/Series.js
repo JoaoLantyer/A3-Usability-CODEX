@@ -14,6 +14,7 @@ const Series = () => {
   const [filtroCurtido, setFiltroCurtido] = useState(false);
   const [filtroNaoCurtido, setFiltroNaoCurtido] = useState(false);
   const [filtroWatchlist, setFiltroWatchlist] = useState(false);
+  const [filtroTouched, setFiltroTouched] = useState(false);
   const pageSize = 2;
 
   useEffect(() => {
@@ -186,8 +187,8 @@ const Series = () => {
         {logado === "admin" && (
           <Link className="menu-left" to="/cadastrarserie"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
           )}
-          <nav className="menu-right">
-          <div className={activeFilters ? 'filtrado' : 'naoFiltrado'}><div className="menu-text">FILTRAR</div></div>
+          <nav className={filtroTouched ? ("menu-right-open") : ("menu-right")}>
+          <div className={activeFilters ? 'filtrado' : 'naoFiltrado'} onTouchStart={() => {setFiltroTouched(!filtroTouched)}}><div className="menu-text">FILTRAR</div></div>
             <ul>
             {logado && (
               <><li className={filtroAssistido ? "checked" : ""} onClick={() => setFiltroAssistido(!filtroAssistido)}>ASSISTIDAS</li>

@@ -188,7 +188,8 @@ ul{
     opacity: 1;
 }
 
-.menu-right {
+.menu-right, 
+.menu-right-open{
     height: inherit;
     position: relative;
     display: inline-block;
@@ -220,7 +221,8 @@ ul{
     opacity: 1;
 }
 
-.menu-right ul{
+.menu-right ul,
+.menu-right-open ul{
     right: 0px;
     margin-top: 0;
     margin-bottom: 0;
@@ -232,7 +234,8 @@ ul{
     z-index: 1;
 }
 
-.menu-right ul li {
+.menu-right ul li,
+.menu-right-open ul li {
     cursor: pointer;
     text-transform: uppercase;
     color: #EDEDED;
@@ -242,7 +245,8 @@ ul{
     display: block;
 }
 
-.menu-right:hover .menu-right ul {
+.menu-right:hover ul,
+.menu-right-open ul{
     display: block;
 }
 
@@ -250,16 +254,13 @@ ul{
     background-color: #444444;
 }
 
-.menu-right:hover ul{
-    display: block;
-}
-
 .menu-right ul li:hover{
     opacity: 1;
     background-color: #2E2E2E;
 }
 
-.menu-right ul .checked{
+.menu-right ul .checked, 
+.menu-right-open ul .checked{
     background-color: #DA0037;
 }
 
@@ -333,6 +334,11 @@ ul{
         font-size: 12px;
     }
 
+    .home-bar p{
+        line-height: 60px;
+        font-size: small;
+    }
+
     .menu-left {
         padding-left: 5px;
         padding-right: 5px;
@@ -341,9 +347,27 @@ ul{
         background-position: 0px center;
     }
 
-    .menu-right:hover .naoFiltrado, .menu-right:hover .filtrado{
-        background-color: #171717;
+    .assistido:active, .curtir:active, .naoCurtir:active, .watchlist:active, .favoritar:active, 
+    .taggedAssistido:active, .taggedCurtir:active, .taggedNaoCurtir:active, .taggedWatchlist:active, .taggedFavoritar:active{
+        transform: scale(1.5);
         opacity: 1;
+    }
+
+    .home-series img:active ~ .home-bar, .home-bar:active {
+        opacity: 1;
+    }
+
+    .catalog-series img:active ~ .status-bar, .catalog-streaming img:active ~ .status-bar, .status-bar:active{
+        transform: scale(1.1);
+    }
+
+    .home-series img:active,.catalog-series img:active, .catalog-streaming img:active {
+        transform: scale(1.1);
+        border-color: #DA0037;
+     }
+
+    .naoFiltrado, .filtrado{
+        background-color: #171717;
     }
 
     .naoFiltrado, .filtrado {
@@ -361,7 +385,7 @@ ul{
         width: 50vw;
     }
 
-    .catalog-series li img{
+    .catalog-series li img, .catalog-streaming li img{
         width: 30vw;
     }
 
