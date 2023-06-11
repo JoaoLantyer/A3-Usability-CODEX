@@ -41,6 +41,7 @@ const Login = () => {
 
     return (
         <div>
+            <div className="divisor"></div>
             <div className="container">
             LOGIN
                 <form onSubmit={enviarDados}>
@@ -55,7 +56,7 @@ const Login = () => {
                         onChange={(e) => setSenha (e.target.value)} required />
                     </div>
 
-                    {erroLogin && <p class="failed">Seu login falhou, cheque suas credenciais e tente novamente.</p>}
+                    {erroLogin && <p clasName="failed">Seu login falhou, cheque suas credenciais e tente novamente.</p>}
 
                     <div className="btn">
                         <div className="inner"></div>
@@ -67,6 +68,8 @@ const Login = () => {
                 </form>
             </div>
 
+            <footer>
+            </footer>
 
         </div>
     )

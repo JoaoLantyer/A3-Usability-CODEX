@@ -64,7 +64,7 @@ const Series = () => {
   
       setSeries(filteredSeries);
     });
-  }, [logado, series, plataformas, tags, filtroAssistido, filtroCurtido, filtroNaoCurtido, filtroWatchlist]);
+  }, [logado, series, plataformas, tags, filtroAssistido, filtroCurtido, filtroNaoCurtido, filtroWatchlist, plataformaSelecionada]);
 
   useEffect(() => {
     api.get('plataformas').then(response => {
@@ -248,6 +248,8 @@ const Series = () => {
             <div className="back" onClick={PreviousPage}> </div><p>{currentPage}/{totalPages}</p><div className="next" onClick={NextPage}></div>
           </div>
       </div>
+      <footer>
+      </footer>
     </div>
   );
 };

@@ -86,6 +86,8 @@ const Plataformas = () => {
         </div>
         
       </div>
+      <footer>
+      </footer>
     </div>
   );
 };

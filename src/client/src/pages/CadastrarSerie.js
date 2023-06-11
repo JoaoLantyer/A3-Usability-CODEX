@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import api from '../api';
 import './Forms.css';
 
 const CadastrarSerie = () => {
+
+  const [logado, setLogado] = useState("");
 
     //CREATE
   const [titulo, setTitulo] = useState("");
@@ -33,6 +34,25 @@ const CadastrarSerie = () => {
   const [erroTituloEditar, setErroTituloEditar] = useState(false);
   const [erroUrlEditar, setErroUrlEditar] = useState(false);
   const [serieEditada, setSerieEditada] = useState(false);
+
+  useEffect(() => {
+    const usuarioLogado = localStorage.getItem('usuario');
+    if (usuarioLogado) {
+      const usuarioAchado = JSON.parse(usuarioLogado);
+      setLogado(usuarioAchado);
+  }
+    
+  }, []);
+
+  useEffect(() => {
+    api.get('series')
+      .then(response => {
+        setSeries(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   useEffect(() => {
     api.get('plataformas').then(response => {
@@ -115,8 +135,8 @@ const CadastrarSerie = () => {
             api.put(`/series/${serie.id}`, updatedSerie)
             .then(() => {
                 setSeries((prevSeries) =>
-                prevSeries.map((serie) =>
-                    serie.id === serie.id ? updatedSerie : serie
+                prevSeries.map((prevSeries) =>
+                    prevSeries.id === serie.id ? updatedSerie : serie
                 )
                 );
                 setSerieEditar("");
@@ -136,18 +156,14 @@ const CadastrarSerie = () => {
 
   };
 
-  useEffect(() => {
-    api.get('series')
-      .then(response => {
-        setSeries(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
   return (
     <div>
+
+    {logado === "admin" && (
+
+    <div>
+
+      <div className="divisor"></div>
 
         <div className="container-criar">
         CADASTRAR UMA SÉRIE
@@ -202,6 +218,8 @@ const CadastrarSerie = () => {
                 </div>
             </form>
         </div>
+
+        <div className="divisor"></div>
 
         <div className="container-editar">
         EDITAR UMA SÉRIE
@@ -269,6 +287,7 @@ const CadastrarSerie = () => {
           </form>
       </div>
 
+      <div className="divisor"></div>
 
       <div className="container-apagar">
 
@@ -299,8 +318,12 @@ const CadastrarSerie = () => {
           </form>
 
           </div>
+          <div className="divisor"></div>
+          <footer>
+          </footer>
 
-
+          </div>
+      )}
     </div>
   );
 };

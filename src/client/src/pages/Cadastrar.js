@@ -77,6 +77,7 @@ const Cadastrar = () => {
     return (
         
         <div>
+            <div className="divisor"></div>
             <div className="container">
                 CADASTRAR
                 <form onSubmit={enviarDados}>
@@ -112,6 +113,8 @@ const Cadastrar = () => {
                 </form>
 
             </div>
+            <footer>
+            </footer>
         </div>
     )
 };

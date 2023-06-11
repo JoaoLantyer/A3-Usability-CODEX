@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
 import api from '../api';
 import './Forms.css';
 
 const CadastrarPlataforma = () => {
+
+  const [logado, setLogado] = useState("");
 
     //CREATE
   const [nome, setNome] = useState("");
@@ -27,6 +28,14 @@ const CadastrarPlataforma = () => {
   const [erroUrlEditar, setErroUrlEditar] = useState(false);
   const [plataformaEditada, setPlataformaEditada] = useState(false);
 
+  useEffect(() => {
+    const usuarioLogado = localStorage.getItem('usuario');
+    if (usuarioLogado) {
+      const usuarioAchado = JSON.parse(usuarioLogado);
+      setLogado(usuarioAchado);
+  }
+    
+  }, []);
 
   const enviarDados = (e) => {
     e.preventDefault();
@@ -96,8 +105,8 @@ const CadastrarPlataforma = () => {
             api.put(`/plataformas/${plataforma.id}`, updatedPlataforma)
             .then(() => {
                 setPlataformas((prevPlataformas) =>
-                prevPlataformas.map((plataforma) =>
-                    plataforma.id === plataforma.id ? updatedPlataforma : plataforma
+                prevPlataformas.map((prevPlataforma) =>
+                    prevPlataforma.id === plataforma.id ? updatedPlataforma : plataforma
                 )
                 );
                 setPlataformaEditar("");
@@ -128,6 +137,12 @@ const CadastrarPlataforma = () => {
   return (
     <div>
 
+    {logado === "admin" && (
+
+    <div>
+
+      <div className="divisor"></div>
+
         <div className="container-criar">
         CADASTRAR UMA PLATAFORMA
 
@@ -151,6 +166,8 @@ const CadastrarPlataforma = () => {
                 </div>
             </form>
         </div>
+
+        <div className="divisor"></div>
 
         <div className="container-editar">
         EDITAR UMA PLATAFORMA
@@ -190,6 +207,8 @@ const CadastrarPlataforma = () => {
           </form>
       </div>
 
+      <div className="divisor"></div>
+
       <div className="container-apagar">
 
 APAGAR UMA PLATAFORMA
@@ -220,7 +239,12 @@ APAGAR UMA PLATAFORMA
       </form>
 
       </div>
+      <div className="divisor"></div>
+      <footer>
+      </footer>
 
+      </div>
+    )}
     </div>
   );
 };

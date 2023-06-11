@@ -10,12 +10,8 @@
     font-size: small;
 }
 
-.container, .container-criar, .container-editar{
-    transform:translate(-50%, 10%);
-}
-
-.container-apagar{
-    transform:translate(-50%, 33%);
+.container, .container-criar, .container-editar, .container-apagar{
+    transform:translate(-50%, 0%);
 }
 
 .container form,  .container-criar form, .container-editar form, .container-apagar form {
@@ -99,6 +95,15 @@ form .btn  input {
 
 .link:hover{
     text-decoration: underline;
+}
+
+.divisor{
+    position:relative;
+    left: 50%;
+    width: 500px;
+    height: 10px;
+    padding: 30px;
+    transform:translate(-50%, 100%);
 }
 
 @media (max-width: 999px) {
