@@ -170,12 +170,12 @@ const CadastrarSerie = () => {
 
             <form onSubmit={enviarDados}>
                 <div className="data">
-                <label htmlFor="titulo">Titulo (sem caracteres especiais):</label>
+                <label htmlFor="titulo">Titulo da série (sem caracteres especiais):</label>
                 <input type="text" id="titulo" name="name" placeholder="Digite o título da série" maxLength={50} onChange={(e) => setTitulo(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu pôster:</label>
-                <input type="url" id="url" name="url" placeholder="Cole a URL do seu pôster" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Cole o URL do seu pôster" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="plataforma">Plataforma onde a série está disponível:</label>
@@ -237,15 +237,15 @@ const CadastrarSerie = () => {
             </div>
 
             <div className="data">
-              <label htmlFor="tituloEditar">Editar Título (sem caracteres especiais):</label>
+              <label htmlFor="tituloEditar">Editar título da série (sem caracteres especiais):</label>
               <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o seu novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
             </div>
             <div className="data">
-              <label htmlFor="urlEditar">Editar URL:</label>
+              <label htmlFor="urlEditar">Editar URL do pôster:</label>
               <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite nova URL do seu pôster" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
             </div>
             <div className="data">
-              <label htmlFor="plataformaEditar">Editar Plataforma:</label>
+              <label htmlFor="plataformaEditar">Editar plataforma onde a série está disponível:</label>
               <select id="editarPlataforma" name="editarPlataforma" placeholder="Escolha sua plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
               <option value="-">-</option>
                 {plataformas &&
