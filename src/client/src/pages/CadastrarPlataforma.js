@@ -10,7 +10,6 @@ const CadastrarPlataforma = () => {
   const [nome, setNome] = useState("");
   const [url, setUrl] = useState("");
   const [erroNome, setErroNome] = useState(false);
-  const [erroUrl, setErroUrl] = useState(false);
   const [plataformas, setPlataformas] = useState([]);
   const [plataformaCriada, setPlataformaCriada] = useState(false);
 
@@ -25,7 +24,6 @@ const CadastrarPlataforma = () => {
   const [urlEditar, setUrlEditar] = useState("");
   const [erroEditar, setErroEditar] = useState(false);
   const [erroNomeEditar, setErroNomeEditar] = useState(false);
-  const [erroUrlEditar, setErroUrlEditar] = useState(false);
   const [plataformaEditada, setPlataformaEditada] = useState(false);
 
   useEffect(() => {
@@ -42,8 +40,6 @@ const CadastrarPlataforma = () => {
 
     if (plataformas.map(x => x.nome).includes(nome)) {
       setErroNome(true);
-    } else if (plataformas.map(y => y.url).includes(url)) {
-      setErroUrl(true);
     } else {
       const formData = {
         nome: nome,
@@ -89,18 +85,34 @@ const CadastrarPlataforma = () => {
 
     if (plataformas.map(x => x.nome).includes(nomeEditar)) {
         setErroNomeEditar(true);
-      } else if (plataformas.map(y => y.url).includes(urlEditar)) {
-        setErroUrlEditar(true);
       } else {
 
         if (plataforma) {
 
             setPlataformaEditada(true);
-
-            const updatedPlataforma = {
-            nome: nomeEditar,
-            url: urlEditar,
-            };
+            
+            let updatedPlataforma;
+              if (nomeEditar !== "" && urlEditar !== "") {
+                updatedPlataforma = {
+                  nome: nomeEditar,
+                  url: urlEditar,
+                };
+              } else if (nomeEditar === "" && urlEditar !== "") {
+                updatedPlataforma = {
+                  nome: plataforma.nome,
+                  url: urlEditar,
+                };
+              } else if (nomeEditar !== "" && urlEditar === "") {
+                updatedPlataforma = {
+                  nome: nomeEditar,
+                  url: plataforma.url,
+                };
+              } else {
+                updatedPlataforma = {
+                  nome: plataforma.nome,
+                  url: plataforma.url,
+                };
+              }
 
             api.put(`/plataformas/${plataforma.id}`, updatedPlataforma)
             .then(() => {
@@ -156,8 +168,7 @@ const CadastrarPlataforma = () => {
                 <input type="url" id="url" name="url" placeholder="Cole a URL do seu ícone" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
 
-                {erroNome && <p>Nome de plataforma já existe</p>}
-                {erroUrl && <p>URL já cadastrado</p>}
+                {erroNome && <p>Nome de plataforma já existe.</p>}
                 {plataformaCriada && <p>Plataforma criada com sucesso!</p>}
 
                 <div className="btn">
@@ -188,16 +199,15 @@ const CadastrarPlataforma = () => {
 
             <div className="data">
               <label htmlFor="nomeEditar">Editar nome da plataforma (sem caracteres especiais):</label>
-              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome da plataforma" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} required />
+              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome da plataforma" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL do seu ícone:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Cole a nova URL do seu ícone" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Cole a nova URL do seu ícone" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} />
             </div>
             
-            {erroEditar && <p>Plataforma não existente no banco de dados</p>}
-            {erroNomeEditar && <p>Nome de plataforma já existe</p>}
-            {erroUrlEditar && <p>URL já cadastrado</p>}
+            {erroEditar && <p>Plataforma não existente no banco de dados.</p>}
+            {erroNomeEditar && <p>Nome de plataforma já existe.</p>}
             {plataformaEditada && <p>Plataforma editada com sucesso!</p>}
 
             <div className="btn">

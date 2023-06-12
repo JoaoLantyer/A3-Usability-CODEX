@@ -14,7 +14,6 @@ const CadastrarSerie = () => {
   const [plataforma2, setPlataforma2] = useState("");
   const [plataforma3, setPlataforma3] = useState("");
   const [erroTitulo, setErroTitulo] = useState(false);
-  const [erroUrl, setErroUrl] = useState(false);
   const [series, setSeries] = useState([]);
   const [serieCriada, setSerieCriada] = useState(false);
 
@@ -32,7 +31,6 @@ const CadastrarSerie = () => {
   const [plataforma3Editar, setPlataforma3Editar] = useState("");
   const [erroEditar, setErroEditar] = useState(false);
   const [erroTituloEditar, setErroTituloEditar] = useState(false);
-  const [erroUrlEditar, setErroUrlEditar] = useState(false);
   const [serieEditada, setSerieEditada] = useState(false);
 
   useEffect(() => {
@@ -66,8 +64,6 @@ const CadastrarSerie = () => {
 
     if (series.map(x => x.titulo).includes(titulo)) {
       setErroTitulo(true);
-    } else if (series.map(y => y.url).includes(url)) {
-      setErroUrl(true);
     } else {
       const formData = {
         titulo: titulo,
@@ -116,21 +112,46 @@ const CadastrarSerie = () => {
 
     if (series.map(x => x.titulo).includes(tituloEditar)) {
         setErroTituloEditar(true);
-      } else if (series.map(y => y.url).includes(urlEditar)) {
-        setErroUrlEditar(true);
       } else {
 
         if (serie) {
 
             setSerieEditada(true);
 
-            const updatedSerie = {
-            titulo: tituloEditar,
-            url: urlEditar,
-            plataforma: plataformaEditar,
-            plataforma2: plataforma2Editar,
-            plataforma3: plataforma3Editar
-            };
+            let updatedSerie;
+              if (tituloEditar !== "" && urlEditar !== "") {
+                updatedSerie = {
+                  titulo: tituloEditar,
+                  url: urlEditar,
+                  plataforma: plataformaEditar,
+                  plataforma2: plataforma2Editar,
+                  plataforma3: plataforma3Editar,
+                };
+              } else if (tituloEditar === "" && urlEditar !== "") {
+                updatedSerie = {
+                  titulo: serie.titulo,
+                  url: urlEditar,
+                  plataforma: plataformaEditar,
+                  plataforma2: plataforma2Editar,
+                  plataforma3: plataforma3Editar,
+                };
+              } else if (tituloEditar !== "" && urlEditar === "") {
+                updatedSerie = {
+                  titulo: tituloEditar,
+                  url: serie.url,
+                  plataforma: plataformaEditar,
+                  plataforma2: plataforma2Editar,
+                  plataforma3: plataforma3Editar,
+                };
+              } else {
+                updatedSerie = {
+                  titulo: serie.titulo,
+                  url: serie.url,
+                  plataforma: plataformaEditar,
+                  plataforma2: plataforma2Editar,
+                  plataforma3: plataforma3Editar,
+                };
+              }
 
             api.put(`/series/${serie.id}`, updatedSerie)
             .then(() => {
@@ -209,7 +230,6 @@ const CadastrarSerie = () => {
                 </div>
 
                 {erroTitulo && <p>Nome de série já existe</p>}
-                {erroUrl && <p>URL já cadastrado</p>}
                 {serieCriada && <p>Série criada com sucesso!</p>}
 
                 <div className="btn">
@@ -238,11 +258,11 @@ const CadastrarSerie = () => {
 
             <div className="data">
               <label htmlFor="tituloEditar">Editar título da série (sem caracteres especiais):</label>
-              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o seu novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} required />
+              <input type="text" id="tituloEditar" name="tituloEditar" placeholder="Digite o seu novo título" maxLength={50} value={tituloEditar} onChange={(e) => setTituloEditar(e.target.value)} />
             </div>
             <div className="data">
               <label htmlFor="urlEditar">Editar URL do pôster:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite nova URL do seu pôster" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} required />
+              <input type="url" id="urlEditar" name="urlEditar" placeholder="Digite nova URL do seu pôster" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} />
             </div>
             <div className="data">
               <label htmlFor="plataformaEditar">Editar plataforma onde a série está disponível:</label>
@@ -277,7 +297,6 @@ const CadastrarSerie = () => {
             
             {erroEditar && <p>Série não existente no banco de dados</p>}
             {erroTituloEditar && <p>Nome de série já existe</p>}
-            {erroUrlEditar && <p>URL já cadastrado</p>}
             {serieEditada && <p>Série editada com sucesso!</p>}
 
             <div className="btn">
