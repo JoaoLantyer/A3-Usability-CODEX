@@ -63,7 +63,8 @@ ul{
     margin-right: 0.5vw;
 }
 
-.assistido, .curtir, .naoCurtir, .watchlist, .favoritar, .taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist, .taggedFavoritar {
+.assistido, .curtir, .naoCurtir, .watchlist, .editar, .apagar,
+.taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist {
     filter: invert(99%) sepia(7%) saturate(295%) hue-rotate(219deg) brightness(117%) contrast(86%);
     cursor: pointer;
     opacity: 0.1;
@@ -74,7 +75,7 @@ ul{
     background-repeat: no-repeat;
 }
 
-.taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist, .taggedFavoritar {
+.taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist {
     filter: invert(19%) sepia(72%) saturate(7428%) hue-rotate(337deg) brightness(82%) contrast(111%);
     opacity: 1;
 }
@@ -96,12 +97,23 @@ ul{
     background-image: url(../images/bookmark.png);
 }
 
-.favoritar, .taggedFavoritar {
-    background-image: url(../images/coracao.png); 
+.editar {
+    background-image: url(../images/editar.png);
+    opacity: 1;
 }
 
-.assistido:hover, .curtir:hover, .naoCurtir:hover, .watchlist:hover, .favoritar:hover, 
-.taggedAssistido:hover, .taggedCurtir:hover, .taggedNaoCurtir:hover, .taggedWatchlist:hover, .taggedFavoritar:hover{
+.apagar {
+    background-image: url(../images/trash.png);
+    filter: invert(19%) sepia(72%) saturate(7428%) hue-rotate(337deg) brightness(82%) contrast(111%);
+    opacity: 1;
+}
+
+.show{
+    display: block !important;
+  }
+
+.assistido:hover, .curtir:hover, .naoCurtir:hover, .watchlist:hover, .editar:hover, .apagar:hover, 
+.taggedAssistido:hover, .taggedCurtir:hover, .taggedNaoCurtir:hover, .taggedWatchlist:hover {
     transform: scale(1.5);
     opacity: 1;
 }
@@ -172,19 +184,28 @@ ul{
     align-items: center;
 }
 
-.menu-left {
+.menu-left, .menu-left-plat {
     color: #EDEDED;
     margin-right: auto;
-    width: 200px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background-image: url(../images/editar.png);
+    background-image: url(../images/add.png);
     background-size: 20px 20px;
-    background-position: 180px center;
+}
+
+.menu-left{
+    width: 190px;
+    background-position: 170px center;
     background-repeat: no-repeat;
 }
 
-.menu-left:hover{
+.menu-left-plat{
+    width: 240px;
+    background-position: 220px center;
+    background-repeat: no-repeat;
+}
+
+.menu-left:hover, .menu-left-plat:hover{
     opacity: 1;
 }
 
@@ -350,7 +371,7 @@ footer {
         font-size: small;
     }
 
-    .menu-left {
+    .menu-left, .menu-left-plat {
         padding-left: 5px;
         padding-right: 5px;
         width: 20px;
@@ -358,8 +379,8 @@ footer {
         background-position: 0px center;
     }
 
-    .assistido:active, .curtir:active, .naoCurtir:active, .watchlist:active, .favoritar:active, 
-    .taggedAssistido:active, .taggedCurtir:active, .taggedNaoCurtir:active, .taggedWatchlist:active, .taggedFavoritar:active{
+    .assistido:active, .curtir:active, .naoCurtir:active, .watchlist:active, 
+    .taggedAssistido:active, .taggedCurtir:active, .taggedNaoCurtir:active, .taggedWatchlist:active {
         transform: scale(1.5);
         opacity: 1;
     }
@@ -400,7 +421,8 @@ footer {
         width: 30vw;
     }
 
-    .assistido, .curtir, .naoCurtir, .watchlist, .favoritar, .taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist, .taggedFavoritar {
+    .assistido, .curtir, .naoCurtir, .watchlist, .editar, .apagar,
+    .taggedAssistido, .taggedCurtir, .taggedNaoCurtir, .taggedWatchlist {
         height: 5vw;
         width: 5vw;
         background-size: 5vw 5vw;

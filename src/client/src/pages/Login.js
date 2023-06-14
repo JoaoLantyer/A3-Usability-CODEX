@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 import api from '../api';
 import { useNavigate, Link } from 'react-router-dom';
 import './Forms.css';
@@ -7,12 +8,10 @@ import './Forms.css';
 const Login = () => {
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
-    const [erroLogin, setErroLogin] = useState(false);
     const navigate = useNavigate();
 
     const enviarDados = (e) => {
         e.preventDefault();
-        setErroLogin(false);
 
         const formData = {
             usuario: usuario,
@@ -29,13 +28,27 @@ const Login = () => {
                 window.location.reload(true);
 
             }else{
-                setErroLogin(true);
+                notifyErrorGeral();
             }
           })
 
           .catch((error) => {
             console.error(error);
-            setErroLogin(true);
+            notifyErrorGeral();
+          });
+      };
+   
+      const notifyErrorGeral = () => {
+    
+        toast.error('Credenciais incorretas, tente novamente.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
           });
       };
 
@@ -55,8 +68,6 @@ const Login = () => {
                         <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
                         onChange={(e) => setSenha (e.target.value)} required />
                     </div>
-
-                    {erroLogin && <p clasName="failed">Seu login falhou, cheque suas credenciais e tente novamente.</p>}
 
                     <div className="btn">
                         <div className="inner"></div>

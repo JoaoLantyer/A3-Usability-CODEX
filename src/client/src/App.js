@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import './App.css';
 
 // Pages
@@ -30,6 +31,20 @@ function App() {
         <Route path ="cadastrarplataforma" element={<CadastrarPlataforma />} />
       </Routes>
       </BrowserRouter>
+
+      
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
 
       <footer>
       </footer>

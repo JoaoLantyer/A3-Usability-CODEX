@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import api from '../api';
 import './Forms.css';
@@ -27,11 +28,11 @@ const Cadastrar = () => {
         setContaCriada(false);
 
         if(contas.map(x => x.usuario).includes(usuario)){
-            setErroUsuario(true);
+            notifyErrorGeral();
         }else if(contas.map(y => y.email).includes(email)){
-            setErroEmail(true);
+            notifyErrorGeral();
         }else if(senha !== confirmarSenha){
-            setErroSenha(true);
+            notifyErrorSenha();
         }else{
             const formData = {
                 usuario: usuario,
@@ -57,19 +58,41 @@ const Cadastrar = () => {
     }, []);
 
     useEffect(() => {
-        if (erroUsuario) {
-            setMessage("Nome de usuário já existe.");
-          } else if (erroEmail) {
-            setMessage("Email já cadastrado.");
-          } else if (erroSenha) {
-            setMessage("As senhas não coincidem.");
-          } else if (contaCriada) {
+        if (contaCriada) {
             setMessage("Conta criada com sucesso!");
             setLoginLink("faça o login clicando aqui");
           } else {
             setMessage("");
         }
       }, [erroUsuario, erroEmail, erroSenha, contaCriada]);
+
+      const notifyErrorGeral = () => {
+    
+        toast.error('Nome de usuário e/ou email já existem.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+      };
+
+      const notifyErrorSenha = () => {
+    
+        toast.error('As senhas não coincidem.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+      };
 
 
     
@@ -113,6 +136,7 @@ const Cadastrar = () => {
                 </form>
 
             </div>
+            <div className="divisor"></div>
             <footer>
             </footer>
         </div>

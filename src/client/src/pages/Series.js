@@ -1,20 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../api';
 import './Pages.css';
+import ApagarSerie from '../components/ApagarSerie';
+import EditarSerie from "./EditarSerie";
 
 const Series = () => {
   const [series, setSeries] = useState([]);
   const [plataformas, setPlataformas] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [logado, setLogado] = useState("");
+
+  //TAGS E FILTROS
   const [tags, setTags] = useState([]);
-  const [plataformaSelecionada, setPlataformaSelecionada] = useState("");
+  const [plataformaSelecionada, setPlataformaSelecionada] = useState(null);
   const [filtroAssistido, setFiltroAssistido] = useState(false);
   const [filtroCurtido, setFiltroCurtido] = useState(false);
   const [filtroNaoCurtido, setFiltroNaoCurtido] = useState(false);
   const [filtroWatchlist, setFiltroWatchlist] = useState(false);
   const [filtroTouched, setFiltroTouched] = useState(false);
+
+  //EDIT
+  const [serieEditar, setSerieEditar] = useState("");
+  const [showEditarSerie, setShowEditarSerie] = useState(false);
+  const handleEditarClose = () => setShowEditarSerie(false);
+  const handleEditarShow = () => setShowEditarSerie(true);
+
+  //DELETE
+  const [serieApagar, setSerieApagar] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  //PAGINACAO
   const pageSize = 2;
 
   useEffect(() => {
@@ -30,11 +49,12 @@ const Series = () => {
     api.get('series').then(response => {
       let filteredSeries = response.data;
 
+
       if (plataformaSelecionada) {
         filteredSeries = filteredSeries.filter(serie =>
-          serie.plataforma === plataformaSelecionada ||
-          serie.plataforma2 === plataformaSelecionada ||
-          serie.plataforma3 === plataformaSelecionada
+          parseInt(serie.plataforma) === plataformaSelecionada ||
+          parseInt(serie.plataforma2) === plataformaSelecionada ||
+          parseInt(serie.plataforma3) === plataformaSelecionada
         );
       }
   
@@ -116,6 +136,61 @@ const Series = () => {
     currentPage * pageSize
   );
 
+  const handleApagar = async (serieEscolhida) => {
+      try {
+        notify();
+        const resp = await api.delete(`/series/${serieEscolhida.id}`);
+        console.log(resp.data);
+  
+        const updatedSeries = series.filter((x) => x.id !== serieEscolhida.id);
+        setSeries(updatedSeries);
+
+      } catch (err) {
+        console.error(err);
+        notifyErrorGeral();
+      }
+
+  };
+  
+  const handleConfirmacaoApagar = (serieEscolhida) => {
+    setSerieApagar(serieEscolhida);
+    handleShow();
+  };
+
+  const handleEditar = (serieEscolhida) => {
+    setSerieEditar(serieEscolhida);
+    handleEditarShow();
+  };
+
+  const notify = () => {
+
+    toast.success('Série excluída com sucesso!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark"
+    });
+  };
+
+  const notifyErrorGeral = () => {
+
+    toast.error('Aconteceu algo de errado, tente novamente.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  };
+
+
   const handleTag = async (serie, nome, usuario) => {
     const tag = tags.find((x) => x.nome === nome && x.serie_id === serie.id);
   
@@ -185,7 +260,7 @@ const Series = () => {
 
         <div className="submenu">
         {logado === "admin" && (
-          <Link className="menu-left" to="/cadastrarserie"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
+          <Link className="menu-left" to="/cadastrarserie"><div className="menu-text">ADICIONAR SÉRIE</div></Link>
           )}
           <nav className={filtroTouched ? ("menu-right-open") : ("menu-right")}>
           <div className={activeFilters ? 'filtrado' : 'naoFiltrado'} onTouchStart={() => {setFiltroTouched(!filtroTouched)}}><div className="menu-text">FILTRAR</div></div>
@@ -199,8 +274,8 @@ const Series = () => {
               
               {plataformas &&
                  plataformas.map((plataforma) => (
-              <li key={plataforma.id} className={plataformaSelecionada === plataforma.nome ? "checked" : ""}>
-              <li  className={plataformaSelecionada === plataforma.nome ? "checked" : ""} onClick={() => setPlataformaSelecionada(prevPlatforma => prevPlatforma === plataforma.nome ? null : plataforma.nome)}>
+              <li key={plataforma.id} className={plataformaSelecionada === plataforma.id ? "checked" : ""}>
+              <li  className={plataformaSelecionada === plataforma.id ? "checked" : ""} onClick={() => setPlataformaSelecionada(prevPlatforma => prevPlatforma === plataforma.id ? null : parseInt(plataforma.id))}>
               {plataforma.nome}</li>
               </li>
               ))}
@@ -221,20 +296,32 @@ const Series = () => {
                     <div className={"status-bar"}>
                       <div
                         className={isTagged(logado, serie, "assistidos", tags) ? "taggedAssistido" : "assistido"}
-                        onClick={() => handleTag(serie, "assistidos", logado)}
-                      ></div>
+                        onClick={() => handleTag(serie, "assistidos", logado)}></div>
                       <div
                         className={isTagged(logado, serie, "curtidos", tags) ? "taggedCurtir" : "curtir"}
-                        onClick={() => handleTag(serie, "curtidos", logado)}
-                      ></div>
+                        onClick={() => handleTag(serie, "curtidos", logado)}></div>
                       <div
                         className={isTagged(logado, serie, "naoCurtidos", tags) ? "taggedNaoCurtir" : "naoCurtir"}
-                        onClick={() => handleTag(serie, "naoCurtidos", logado)}
-                      ></div>
+                        onClick={() => handleTag(serie, "naoCurtidos", logado)}></div>
                       <div
                         className={isTagged(logado, serie, "watchlist", tags) ? "taggedWatchlist" : "watchlist"}
-                        onClick={() => handleTag(serie, "watchlist", logado)}
-                      ></div>
+                        onClick={() => handleTag(serie, "watchlist", logado)}></div>
+
+                      {logado === "admin" && (
+                      <>
+
+                        <div
+                          className="editar"
+                          onClick={() => handleEditar(serie)}
+                        ></div>
+                      
+                      <div
+                          className="apagar"
+                          onClick={() => handleConfirmacaoApagar(serie)}>
+                          <div id="modal"></div>
+
+                        </div></>)}
+                      
                     </div>
                   ) : (<div></div>)}
                 </li>
@@ -248,6 +335,21 @@ const Series = () => {
             <div className="back" onClick={PreviousPage}> </div><p>{currentPage}/{totalPages}</p><div className="next" onClick={NextPage}></div>
           </div>
       </div>
+
+
+      <EditarSerie 
+      serieEditar={serieEditar}
+      showEditarSerie={showEditarSerie}
+      handleEditarClose={handleEditarClose}
+      />
+      
+      <ApagarSerie
+        showModal={showModal}
+        handleClose={handleClose}
+        serie={serieApagar}
+        handleApagar={handleApagar}
+      />
+
       <footer>
       </footer>
     </div>

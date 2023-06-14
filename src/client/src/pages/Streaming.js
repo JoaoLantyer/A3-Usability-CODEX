@@ -1,13 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../api';
 import './Pages.css';
+import ApagarPlataforma from '../components/ApagarPlataforma';
+import EditarPlataforma from "./EditarPlataforma";
 
 const Plataformas = () => {
   const [plataformas, setPlataformas] = useState([]);
   const [logado, setLogado] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 2;
+
+  //EDIT
+  const [plataformaEditar, setPlataformaEditar] = useState("");
+  const [showEditarPlataforma, setShowEditarPlataforma] = useState(false);
+  const handleEditarClose = () => setShowEditarPlataforma(false);
+  const handleEditarShow = () => setShowEditarPlataforma(true);
+
+  //DELETE
+  const [plataformaApagar, setPlataformaApagar] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   useEffect(() => {
     const usuarioLogado = localStorage.getItem('usuario');
@@ -22,7 +37,7 @@ const Plataformas = () => {
     api.get('plataformas').then(response => {
       setPlataformas(response.data);
     });
-  }, []);
+  }, [plataformas]);
 
   const chunkArray = (arr, size) => {
     const chunkedArray = [];
@@ -57,6 +72,60 @@ const Plataformas = () => {
     currentPage * pageSize
   );
 
+  const handleApagar = async (plataformaEscolhida) => {
+    try {
+      notify();
+      const resp = await api.delete(`/plataformas/${plataformaEscolhida.id}`);
+      console.log(resp.data);
+
+      const updatedPlataformas = plataformas.filter((x) => x.id !== plataformaEscolhida.id);
+      setPlataformas(updatedPlataformas);
+
+    } catch (err) {
+      console.error(err);
+      notifyErrorGeral();
+    }
+
+};
+
+const handleConfirmacaoApagar = (plataformaEscolhida) => {
+  setPlataformaApagar(plataformaEscolhida);
+  handleShow();
+};
+
+const handleEditar = (plataformaEscolhida) => {
+  setPlataformaEditar(plataformaEscolhida);
+  handleEditarShow();
+};
+
+const notify = () => {
+
+  toast.success('Plataforma excluída com sucesso!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark"
+  });
+};
+
+const notifyErrorGeral = () => {
+
+  toast.error('Aconteceu algo de errado, tente novamente.', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    });
+};
+
   return (
     <div>
       <div className="title-menu">
@@ -64,7 +133,7 @@ const Plataformas = () => {
         
         <div className="submenu">
         {logado === "admin" && (
-          <Link className="menu-left" to="/cadastrarplataforma"><div className="menu-text">EDITAR CATÁLOGO</div></Link>
+          <Link className="menu-left-plat" to="/cadastrarplataforma"><div className="menu-text">ADICIONAR PLATAFORMA</div></Link>
           )}
         </div>
         
@@ -76,6 +145,23 @@ const Plataformas = () => {
             {chunk.map(plataforma => (
               <li key={plataforma.id}>
                 <img src={plataforma.url} alt={plataforma.nome} />
+                {logado === "admin" ? (
+                    <div className={"status-bar"}>
+                      
+                        <div
+                          className="editar"
+                          onClick={() => handleEditar(plataforma)}
+                        ></div>
+                      
+                      <div
+                          className="apagar"
+                          onClick={() => handleConfirmacaoApagar(plataforma)}>
+                          <div id="modal"></div>
+
+                        </div>
+                      
+                    </div>
+                  ) : (<div></div>)}
               </li>
             ))}
           </ul>
@@ -86,6 +172,20 @@ const Plataformas = () => {
         </div>
         
       </div>
+
+      <EditarPlataforma 
+      plataformaEditar={plataformaEditar}
+      showEditarPlataforma={showEditarPlataforma}
+      handleEditarClose={handleEditarClose}
+      />
+      
+      <ApagarPlataforma
+        showModal={showModal}
+        handleClose={handleClose}
+        plataforma={plataformaApagar}
+        handleApagar={handleApagar}
+      />
+
       <footer>
       </footer>
     </div>

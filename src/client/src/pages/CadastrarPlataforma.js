@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
 import api from '../api';
 import './Forms.css';
 
@@ -9,22 +10,8 @@ const CadastrarPlataforma = () => {
     //CREATE
   const [nome, setNome] = useState("");
   const [url, setUrl] = useState("");
-  const [erroNome, setErroNome] = useState(false);
   const [plataformas, setPlataformas] = useState([]);
-  const [plataformaCriada, setPlataformaCriada] = useState(false);
 
-  //DELETE
-  const [plataformaApagar, setPlataformaApagar] = useState("");
-  const [erroApagar, setErroApagar] = useState(false);
-  const [plataformaApagada, setPlataformaApagada] = useState(false);
-
-  //EDIT
-  const [plataformaEditar, setPlataformaEditar] = useState("");
-  const [nomeEditar, setNomeEditar] = useState("");
-  const [urlEditar, setUrlEditar] = useState("");
-  const [erroEditar, setErroEditar] = useState(false);
-  const [erroNomeEditar, setErroNomeEditar] = useState(false);
-  const [plataformaEditada, setPlataformaEditada] = useState(false);
 
   useEffect(() => {
     const usuarioLogado = localStorage.getItem('usuario');
@@ -39,7 +26,9 @@ const CadastrarPlataforma = () => {
     e.preventDefault();
 
     if (plataformas.map(x => x.nome).includes(nome)) {
-      setErroNome(true);
+      notifyErrorNome();
+    } else if (plataformas.map(y => y.url).includes(url)) {
+      notifyErrorUrl();
     } else {
       const formData = {
         nome: nome,
@@ -53,88 +42,11 @@ const CadastrarPlataforma = () => {
         .catch((error) => {
           console.error(error);
         });
-
-      setPlataformaCriada(true);
+        notify();
+        clearForm();
     }
   };
 
-  const handleApagar = (e) => {
-    e.preventDefault();
-    
-    const plataforma = plataformas.find((x) => x.nome === plataformaApagar);
-    
-    if (plataforma) {
-        setPlataformaApagada(true);
-        api.delete(`/plataformas/${plataforma.id}`)
-        .then(() => {
-            setPlataformas((prevPlataformas) => prevPlataformas.filter((x) => x.id !== plataforma.id));
-            setPlataformaApagar("");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-        setErroApagar(true);
-    }
-  };
-
-  const handleEdit = (e) => {
-    e.preventDefault();
-
-    const plataforma = plataformas.find((x) => x.nome === plataformaEditar);
-
-    if (plataformas.map(x => x.nome).includes(nomeEditar)) {
-        setErroNomeEditar(true);
-      } else {
-
-        if (plataforma) {
-
-            setPlataformaEditada(true);
-            
-            let updatedPlataforma;
-              if (nomeEditar !== "" && urlEditar !== "") {
-                updatedPlataforma = {
-                  nome: nomeEditar,
-                  url: urlEditar,
-                };
-              } else if (nomeEditar === "" && urlEditar !== "") {
-                updatedPlataforma = {
-                  nome: plataforma.nome,
-                  url: urlEditar,
-                };
-              } else if (nomeEditar !== "" && urlEditar === "") {
-                updatedPlataforma = {
-                  nome: nomeEditar,
-                  url: plataforma.url,
-                };
-              } else {
-                updatedPlataforma = {
-                  nome: plataforma.nome,
-                  url: plataforma.url,
-                };
-              }
-
-            api.put(`/plataformas/${plataforma.id}`, updatedPlataforma)
-            .then(() => {
-                setPlataformas((prevPlataformas) =>
-                prevPlataformas.map((prevPlataforma) =>
-                    prevPlataforma.id === plataforma.id ? updatedPlataforma : plataforma
-                )
-                );
-                setPlataformaEditar("");
-                setNomeEditar("");
-                setUrlEditar("");
-                setPlataformaEditar("");
-                setPlataformaEditada(true);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        } else {
-            setErroEditar(true);
-    }}
-
-  };
 
   useEffect(() => {
     api.get('plataformas')
@@ -145,6 +57,53 @@ const CadastrarPlataforma = () => {
         console.error(error);
       });
   }, []);
+
+  const clearForm = () => {
+    setNome("");
+    setUrl("");
+  };
+
+  const notify = () => {
+
+    toast.success('Plataforma criada com sucesso!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark"
+    });
+  };
+
+  const notifyErrorNome = () => {
+
+    toast.error('Nome da plataforma já existe.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  };
+
+  const notifyErrorUrl = () => {
+
+    toast.error('URL ja cadastrado.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+  };
 
   return (
     <div>
@@ -161,15 +120,12 @@ const CadastrarPlataforma = () => {
             <form onSubmit={enviarDados}>
                 <div className="data">
                 <label htmlFor="nome">Nome da plataforma (sem caracteres especiais):</label>
-                <input type="text" id="nome" name="nome" placeholder="Digite o nome da plataforma" maxLength={50} onChange={(e) => setNome(e.target.value)} required />
+                <input type="text" id="nome" name="nome" placeholder="Digite o nome da plataforma" maxLength={50} value={nome} onChange={(e) => setNome(e.target.value)} required />
                 </div>
                 <div className="data">
                 <label htmlFor="url">URL do seu ícone:</label>
-                <input type="url" id="url" name="url" placeholder="Cole a URL do seu ícone" maxLength={2048} onChange={(e) => setUrl(e.target.value)} required />
+                <input type="url" id="url" name="url" placeholder="Cole a URL do seu ícone" maxLength={2048} value={url} onChange={(e) => setUrl(e.target.value)} required />
                 </div>
-
-                {erroNome && <p>Nome de plataforma já existe.</p>}
-                {plataformaCriada && <p>Plataforma criada com sucesso!</p>}
 
                 <div className="btn">
                     <div className="inner"></div>
@@ -178,78 +134,8 @@ const CadastrarPlataforma = () => {
             </form>
         </div>
 
-        <div className="divisor"></div>
-
-        <div className="container-editar">
-        EDITAR UMA PLATAFORMA
-          <form onSubmit={handleEdit}>
-
-          <div className="data">
-              <label htmlFor="plataformaEditar">Nome da plataforma existente:</label>
-
-              <select id="plataformaEditar" name="plataformaEditar" placeholder="Escolha a plataforma" onChange={(e) => setPlataformaEditar(e.target.value)} required >
-              <option value="-">-</option>
-                {plataformas &&
-                 plataformas.map((plataforma) => (
-                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
-                 ))}
-                </select>
-            </div>
-
-
-            <div className="data">
-              <label htmlFor="nomeEditar">Editar nome da plataforma (sem caracteres especiais):</label>
-              <input type="text" id="nomeEditar" name="nomeEditar" placeholder="Digite o novo nome da plataforma" maxLength={50} value={nomeEditar} onChange={(e) => setNomeEditar(e.target.value)} />
-            </div>
-            <div className="data">
-              <label htmlFor="urlEditar">Editar URL do seu ícone:</label>
-              <input type="url" id="urlEditar" name="urlEditar" placeholder="Cole a nova URL do seu ícone" maxLength={2048} value={urlEditar} onChange={(e) => setUrlEditar(e.target.value)} />
-            </div>
-            
-            {erroEditar && <p>Plataforma não existente no banco de dados.</p>}
-            {erroNomeEditar && <p>Nome de plataforma já existe.</p>}
-            {plataformaEditada && <p>Plataforma editada com sucesso!</p>}
-
-            <div className="btn">
-              <div className="inner"></div>
-              <input type="submit" value="Editar" />
-            </div>
-          </form>
-      </div>
-
       <div className="divisor"></div>
 
-      <div className="container-apagar">
-
-APAGAR UMA PLATAFORMA
-
-      <form onSubmit={handleApagar}>
-
-
-      <div className="data">
-          <label htmlFor="plataformaApagar">Plataforma a ser apagada:</label>
-
-          <select id="plataformaApagar" name="plataformaApagar" placeholder="Escolha a plataforma que deseja apagar" onChange={(e) => setPlataformaApagar(e.target.value)} required>
-              <option value="-">-</option>
-                {plataformas &&
-                 plataformas.map((plataforma) => (
-                  <option key={plataforma.id} value={plataforma.nome}>{plataforma.nome}</option>
-                 ))}
-                </select>
-          </div>  
-
-          {erroApagar && <p>A Plataforma não existe.</p>}
-          {plataformaApagada && <p>A Plataforma foi apagada com sucesso.</p>}   
-
-          <div className="btn">
-              <div className="inner"></div>
-          <input type="submit" value="Apagar" />
-        </div>
-
-      </form>
-
-      </div>
-      <div className="divisor"></div>
       <footer>
       </footer>
 
