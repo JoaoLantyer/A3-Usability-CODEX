@@ -17,7 +17,7 @@ const ApagarSerie = ({ showModal, handleClose, serie, handleApagar }) => {
           </div>
           <div className="modal-footer">
             <button className="btn btn-danger" onClick={() => { handleApagar(serie); handleClose(); }}>
-              APAGAR
+              EXCLUIR
             </button>
             <button className="btn btn-secondary" onClick={handleClose}>
               CANCELAR

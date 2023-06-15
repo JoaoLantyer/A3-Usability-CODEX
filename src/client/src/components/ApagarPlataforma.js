@@ -17,7 +17,7 @@ const ApagarPlataforma = ({ showModal, handleClose, plataforma, handleApagar }) 
           </div>
           <div className="modal-footer">
             <button className="btn btn-danger" onClick={() => { handleApagar(plataforma); handleClose(); }}>
-              APAGAR
+              EXCLUIR
             </button>
             <button className="btn btn-secondary" onClick={handleClose}>
               CANCELAR

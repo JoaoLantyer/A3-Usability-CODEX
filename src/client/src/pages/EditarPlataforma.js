@@ -29,8 +29,10 @@ const EditarPlataforma = ({ plataformaEditar, showEditarPlataforma, handleEditar
 
     if (plataformas.map(x => x.nome).includes(nomeEditar)) {
         notifyErrorNome();
+        clearForm();
       } else if (plataformas.map(y => y.url).includes(urlEditar)) { 
         notifyErrorUrl();
+        clearForm();
       } else {
 
         if (plataforma) {
@@ -65,18 +67,23 @@ const EditarPlataforma = ({ plataformaEditar, showEditarPlataforma, handleEditar
                     prevPlataformas.id === plataforma.id ? updatedPlataforma : plataforma
                 )
                 );
-                setNomeEditar("");
-                setUrlEditar("");
             })
             .catch((error) => {
                 console.error(error);
             });
             notify();
+            clearForm();
         } else {
           notifyErrorGeral();
+          clearForm();
     }}
 
   };
+
+  const clearForm = () => {
+    setNomeEditar("");
+    setUrlEditar("");
+  }
 
   const notify = () => {
 

@@ -39,8 +39,10 @@ const EditarSerie = ({ serieEditar, showEditarSerie, handleEditarClose }) => {
 
     if (series.map(x => x.titulo).includes(tituloEditar)) {
         notifyErrorTitulo();
+        clearForm();
       } else if (series.map(y => y.url).includes(urlEditar)) { 
         notifyErrorUrl();
+        clearForm();
       } else {
 
         if (serie) {
@@ -87,21 +89,26 @@ const EditarSerie = ({ serieEditar, showEditarSerie, handleEditarClose }) => {
                     prevSeries.id === serie.id ? updatedSerie : serie
                 )
                 );
-                setTituloEditar("");
-                setUrlEditar("");
-                setPlataformaEditar("");
-                setPlataforma2Editar("");
-                setPlataforma3Editar("");
             })
             .catch((error) => {
                 console.error(error);
             });
             notify();
+            clearForm();
         } else {
           notifyErrorGeral();
+          clearForm();
     }}
 
   };
+
+  const clearForm = () => {
+    setTituloEditar("");
+    setUrlEditar("");
+    setPlataformaEditar("");
+    setPlataforma2Editar("");
+    setPlataforma3Editar("");
+  }
 
   const notify = () => {
 

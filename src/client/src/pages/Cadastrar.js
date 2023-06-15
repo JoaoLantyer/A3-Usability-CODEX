@@ -47,6 +47,7 @@ const Cadastrar = () => {
               console.error(error);
             });
             setContaCriada(true);
+            clearForm();
         }
     };
 
@@ -94,8 +95,12 @@ const Cadastrar = () => {
           });
       };
 
-
-    
+      const clearForm = () => {
+        setUsuario("");
+        setEmail("");
+        setSenha("");
+        setConfirmarSenha("");
+      }; 
 
     return (
         
@@ -106,22 +111,22 @@ const Cadastrar = () => {
                 <form onSubmit={enviarDados}>
                     <div className="data">
                         <label htmlFor="usuario">Usuario:</label>
-                        <input type="text" id="usuario" name="name" placeholder="Digite seu usuario" maxLength={20}
+                        <input type="text" id="usuario" name="name" placeholder="Digite seu usuario" value={usuario} maxLength={20}
                         onChange={(e) => setUsuario (e.target.value)} required />
                     </div>
                     <div className="data">
                         <label htmlFor="email">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Digite seu email" maxLength={254}
+                        <input type="email" id="email" name="email" placeholder="Digite seu email" value={email} maxLength={254}
                         onChange={(e) => setEmail (e.target.value)} required />
                     </div>
                     <div className="data">
                         <label htmlFor="senha">Senha:</label>
-                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" maxLength={128}
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" value={senha} maxLength={128}
                         onChange={(e) => setSenha (e.target.value)} required />
                     </div>
                     <div className="data">
                         <label htmlFor="confirmarSenha">Confirme sua Senha:</label>
-                        <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" maxLength={128}
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha" value={confirmarSenha} maxLength={128}
                         onChange={(e) => setConfirmarSenha (e.target.value)} required />
                     </div>
 
